@@ -1,7 +1,7 @@
 # Language Translation Nodejs Starter Application
 
-  The IBM Watson&trade; [Language Translation][service_url] service provides an Application Programming Interface (API) that lets you identify the language of text, and then translate the text from one supported language to another.  
-  You can translate either by selecting a source and target language, and by selecting a domain. Domain translation is linguistically targeted these business domains:
+  The IBM Watson&trade; [Language Translation][service_url] service provides an Application Programming Interface (API) that lets you identify the language of text, and then use a custom business domain to translate the text from one supported language to another.  
+  You can translate either by letting the service identify the source language or by selecting a source language and then by selecting a target language, and a business domain. Domain translation is linguistically targeted these business domains:
   *  *The News domain* – targeted at news articles and transcripts, it translates English to and from French, Spanish, Portuguese or Arabic.
   *  *The Conversational domain* – targeted at conversational colloquialisms, it translates English to and from French, Spanish, Portuguese or Arabic.
   *  *The Patent domain* – targeted at technical and legal terminology, it translates Spanish, Portuguese, Chinese, or Korean to English.
