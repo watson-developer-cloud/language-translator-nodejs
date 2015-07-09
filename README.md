@@ -76,7 +76,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
                 }
                 "label": "language-translation",
                 "name": "language-translation-service",
-                "plan": "free",
+                "plan": "standard",
                 "tags": [
                   ... 
                 ]
