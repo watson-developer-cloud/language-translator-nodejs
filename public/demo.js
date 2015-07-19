@@ -173,8 +173,8 @@ $(document).ready(function() {
             return false;
         }
 
-        if (($("#dropdownMenuInput").text()).toLowerCase().indexOf("language") < 0) {
-            var source = getLanguageCode($.trim($("#dropdownMenuInput").text()));
+        if (getSrcLang().toLowerCase().indexOf("language") < 0) {
+            var source = getLanguageCode(getSrcLang());
             //console.log(source + '  source ');
         } else {
             alert('Select Input Language.');
@@ -271,7 +271,7 @@ $(document).ready(function() {
                     //console.log(data + "  data " + langAbbrevList[data]);
                     var langIdentified = false;
                     //console.log("detected language code is " + data);
-                    data = data.languages[0].language
+                    data = data.languages[0].language;
                     var dataLangName = getLanguageName(data);
                     //console.log("detected language as " + dataLangName);
                     $.each(sourceList, function(index, value) {
@@ -285,11 +285,11 @@ $(document).ready(function() {
                         //console.log('lang identified');
                         $('#demoSubmit').attr("disabled", false);
                         // If souce lang is same as identified land then add in dropdown Input menu
-                        $("#dropdownMenuInput").html('').html(dataLangName + ' <span class="caret"></span>');
+                        $("#dropdownMenuInput").html('').html(dataLangName + ' detected<span class="caret"></span>');
                     } else {
                         //console.log('lang not identified');
                         $('#demoSubmit').attr("disabled", true);
-                        $("#dropdownMenuInput").html('').html(dataLangName + ': not supported for this domain <span class="caret"></span>');
+                        $("#dropdownMenuInput").html('').html(dataLangName + ' detected: N/A for this domain <span class="caret"></span>');
                     }
                     // update outputDropDown only when the detected source changed
                     if (oldSrcLang != $('#dropdownMenuInput').html())
@@ -348,6 +348,11 @@ $(document).ready(function() {
         });
     }
 
+    function getSrcLang() {
+        var x = $('#dropdownMenuInput').text().split(" ");
+        return x[0];
+    }
+
     function updateOutputDropdownMenu() {
         $("#ulTargetLang").html('');
         $("#dropdownMenuOutput").html('').html('Choose Language <span class="caret"></span>');
@@ -355,7 +360,7 @@ $(document).ready(function() {
         // Update output dropdown menu with target language
         $.each(sourceList, function(index, value) {
             //console.log(value.source + ' source value ' +  $("#dropdownMenuInput").text());
-            if (value.source == $.trim($("#dropdownMenuInput").text())) {
+            if (value.source == getSrcLang()) {
                 if (!($("#ulTargetLang li:contains('" + value.target + "')").length)) {
                     //console.log('source lang already exist in li list');
                     //}
@@ -382,8 +387,8 @@ $(document).ready(function() {
                 pageDomain = $("input:radio[name=group1]:checked").val();
             }
 
-            if (($("#dropdownMenuInput").text()).toLowerCase().indexOf("language") < 0) {
-                source = getLanguageCode($.trim($("#dropdownMenuInput").text()));
+            if (getSrcLang().toLowerCase().indexOf("language") < 0) {
+                source = getLanguageCode(getSrcLang());
             }
 
             if (($("#dropdownMenuOutput").text()).toLowerCase().indexOf("language") < 0) {
@@ -430,7 +435,7 @@ $(document).ready(function() {
                         console.log(statustext + errorthrown);
                     });
             } else {
-                console.log('not all values' + 'source- ' + source + '  target- ' + target + '   textContent- ' + textContent + ' model_id - ' + model_id);
+                console.log('not all values ' + 'source- ' + source + '  target- ' + target + '   textContent- ' + textContent + ' model_id - ' + model_id);
             }
         } // get Translation end here
 
