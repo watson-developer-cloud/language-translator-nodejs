@@ -1,7 +1,7 @@
 # Language Translation Nodejs Starter Application
 
-  The IBM Watson&trade; [Language Translation][service_url] service provides an Application Programming Interface (API) that lets you identify the language of text, and then translate the text from one supported language to another.  
-  You can translate either by selecting a source and target language, and by selecting a domain. Domain translation is linguistically targeted these business domains:
+  The IBM Watson&trade; [Language Translation][service_url] service provides an Application Programming Interface (API) that lets you identify the language of text, and then use a custom business domain to translate the text from one supported language to another.  
+  You can translate either by letting the service identify the source language or by selecting a source language and then by selecting a target language, and a business domain. Domain translation is linguistically targeted these business domains:
   *  *The News domain* – targeted at news articles and transcripts, it translates English to and from French, Spanish, Portuguese or Arabic.
   *  *The Conversational domain* – targeted at conversational colloquialisms, it translates English to and from French, Spanish, Portuguese or Arabic.
   *  *The Patent domain* – targeted at technical and legal terminology, it translates Spanish, Portuguese, Chinese, or Korean to English.
@@ -76,7 +76,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
                 }
                 "label": "language-translation",
                 "name": "language-translation-service",
-                "plan": "free",
+                "plan": "standard",
                 "tags": [
                   ... 
                 ]
@@ -120,8 +120,8 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 ## License
 
-  This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
-  This sample code is using jQuery which is licensed under MIT.
+  This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).  
+  This sample code is using jQuery which is licensed under MIT.  
   This sample code is using bootstrap which is licensed under MIT.
 
 ## Contributing
@@ -132,7 +132,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
 
 [cloud_foundry]: https://github.com/cloudfoundry/cli
-[service_rul]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/language-translation.html
+[service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/language-translation.html
 [getting_started]: https://www.youtube.com/watch?v=X95CMuQys-g
 [sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
 [docs]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/language-translation
