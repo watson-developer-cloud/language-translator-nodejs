@@ -200,7 +200,9 @@ $(document).ready(function() {
                 // Get modal_id for AJAX call
                 if (modelList[x][y].hasOwnProperty("domain")) {
                     var modelListDomain = modelList[x][y].domain.toString();
-                    if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[x][y].source && target === modelList[x][y].target) {
+                    if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && 
+                      source === modelList[x][y].source && target === modelList[x][y].target && 
+                      (modelList[x][y].default_model==true || modelId==='')) {
                         modelId = modelList[x][y].model_id;
                     }
                 }
@@ -322,6 +324,7 @@ $(document).ready(function() {
                 return test[i].name;
             }
         }
+        if (langAbbrev=="arz") return "Egyptian";
         return langAbbrev;
     }
 
@@ -334,6 +337,7 @@ $(document).ready(function() {
                 return test[i].language;
             }
         }
+        if (langName=="Egyptian") return "arz";
         return langName;
     }
 
@@ -446,7 +450,9 @@ $(document).ready(function() {
             for (var y in modelList[x]) {
                 if (modelList[x][y].hasOwnProperty("domain")) {
                     var modelListDomain = modelList[x][y].domain.toString();
-                    if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[x][y].source && target === modelList[x][y].target) {
+                    if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) &&
+                      source === modelList[x][y].source && target === modelList[x][y].target &&
+                      (modelList[x][y].default_model==true || modelId==='')) {
                         modelId = modelList[x][y].model_id;
                         return modelId;
                     }
