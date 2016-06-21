@@ -1,6 +1,6 @@
-# Language Translation Nodejs Starter Application
+# Language Translator Nodejs Starter Application
 
-  The IBM Watson&trade; [Language Translation][service_url] service provides an Application Programming Interface (API) that lets you identify the language of text, and then use a custom business domain to translate the text from one supported language to another.  
+  The IBM Watson&trade; [Language Translator][service_url] service provides an Application Programming Interface (API) that lets you identify the language of text, and then use a custom business domain to translate the text from one supported language to another.  
   You can translate either by letting the service identify the source language or by selecting a source language and then by selecting a target language, and a business domain. Domain translation is linguistically targeted these business domains:
   *  *The News domain* – targeted at news articles and transcripts, it translates English to and from French, Spanish, Portuguese or Arabic.
   *  *The Conversational domain* – targeted at conversational colloquialisms, it translates English to and from French, Spanish, Portuguese or Arabic.
@@ -8,7 +8,7 @@
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/language-translation-nodejs)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/language-translator-nodejs)
 
 ## Getting started
 
@@ -17,11 +17,11 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 1. Download and install the [Cloud-foundry CLI][cloud_foundry] tool if you haven't already.
 
 1. Edit the `manifest.yml` file and change `<application-name>` to something unique. The name you use determines the URL of your application. For example, `<application-name>.mybluemix.net`.
-    
+
     ```
     applications:
     - services:
-      - language-translation-service
+      - language-translator-service
       name: <application-name>
       command: node app.js
       path: .
@@ -29,16 +29,16 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
     ```
 
 1. Connect to Bluemix with the command line tool.
-    
+
     ```sh
     $ cf api https://api.ng.bluemix.net
     $ cf login -u <your user ID>
     ```
 
-1. Create the Language Translation service in Bluemix.
-    
+1. Create the Language Translator service in Bluemix.
+
     ```sh
-    $ cf create-service language_translation standard language-translation-service
+    $ cf create-service language_translator standard language-translator-service
     ```
 
 1. Push your app to make it live:
@@ -55,7 +55,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 1. Configure the code to connect to your service:
 
-    1. Copy the credentials from your `language-translation-service` service in Bluemix. Run the following command:
+    1. Copy the credentials from your `language-translator-service` service in Bluemix. Run the following command:
 
         ```sh
         $ cf env <application-name>
@@ -67,18 +67,18 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
         System-Provided:
         {
           "VCAP_SERVICES": {
-            "language_translation": [
+            "language_translator": [
               {
                 "credentials": {
                   "password": "<password>",
                   "url": "<url>",
                   "username": "<username>"
                 }
-                "label": "language-translation",
-                "name": "language-translation-service",
+                "label": "language-translator",
+                "name": "language-translator-service",
                 "plan": "standard",
                 "tags": [
-                  ... 
+                  ...
                 ]
               }
             ]
@@ -91,8 +91,8 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
     1. Save the `creds.js` file.
 
 
-1. Install the Language Translation Node.js package:
-    1. Change to the new directory that contains the project. 
+1. Install the Language Translator Node.js package:
+    1. Change to the new directory that contains the project.
     2. Run the following command:node
 
     ```node
@@ -116,7 +116,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   $ cf logs <application-name> --recent
   ```
 
-* For more details about the service, see the [documentation][docs] for the Language Translation.
+* For more details about the service, see the [documentation][docs] for the Language Translator.
 
 ## License
 

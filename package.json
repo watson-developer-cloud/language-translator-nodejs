@@ -1,20 +1,20 @@
 {
-  "name": "LanguageTranslationNodejsStarterApp",
-  "version": "0.1.6",
-  "description": "A sample nodejs app for Bluemix that use the Language Translation service",
+  "name": "language-translator-demo",
+  "version": "0.2.9",
+  "description": "A sample nodejs app for Bluemix that use the Language Translator service",
   "dependencies": {
-    "body-parser": "~1.14.1",
-    "errorhandler": "~1.4.2",
-    "express": "~4.13.3",
+    "body-parser": "~1.15.2",
+    "express": "~4.14.0",
+    "express-rate-limit": "~2.3.1",
     "jade": "~1.11.0",
-    "watson-developer-cloud": "~1.0.6"
+    "watson-developer-cloud": "~1.9.4"
   },
   "engines": {
-    "node": ">=0.10.38"
+    "node": ">=4.x"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/watson-developer-cloud/language-translation-nodejs.git"
+    "url": "https://github.com/watson-developer-cloud/language-translator-nodejs.git"
   },
   "author": "IBM Corp.",
   "contributors": [
@@ -25,9 +25,11 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/watson-developer-cloud/language-translation-nodejs/issues"
+    "url": "https://github.com/watson-developer-cloud/language-translator-nodejs/issues"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "lint": "jshint .",
+    "validate": "npm ls"
   }
 }
