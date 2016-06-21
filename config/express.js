@@ -18,7 +18,7 @@
 
 // Module dependencies
 var express    = require('express'),
-  errorhandler = require('errorhandler'),
+  morgan       = require('morgan'),
   bodyParser   = require('body-parser');
 
 module.exports = function (app) {
@@ -26,15 +26,11 @@ module.exports = function (app) {
   // Configure Express
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+  app.use(morgan('dev'));
 
   // Setup static public directory
   app.use(express.static(__dirname + '/../public'));
   app.set('view engine', 'jade');
   app.set('views', __dirname + '/../views');
-
-  // Add error handling in dev
-  if (!process.env.VCAP_SERVICES) {
-    app.use(errorhandler());
-  }
 
 };

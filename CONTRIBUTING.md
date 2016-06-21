@@ -4,11 +4,11 @@ If you are having difficulties running the app or have a question about the serv
 
 # Issues
 
-If you encounter an issue with this sample app, you are welcome to submit a [bug report](https://github.com/watson-developer-cloud/language-translation-nodejs/issues). Before that, please search for similar issues. It's possible somebody has encountered this issue already.
+If you encounter an issue with this sample app, you are welcome to submit a [bug report](https://github.com/watson-developer-cloud/language-translator-nodejs/issues). Before that, please search for similar issues. It's possible somebody has encountered this issue already.
 
 # Pull Requests
 
-If you want to contribute to the reporistoy, here's a quick guide:
+If you want to contribute to the repository, here's a quick guide:
 
 1. Fork the repo.
 1. develop your code changes: `npm install -d`

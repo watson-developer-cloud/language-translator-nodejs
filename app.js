@@ -18,21 +18,35 @@
 
 var express  = require('express'),
   app        = express(),
-  bluemix    = require('./config/bluemix'),
-  extend     = require('util')._extend,
-  watson     = require('watson-developer-cloud');
+  extend     = require('extend'),
+  watson     = require('watson-developer-cloud'),
+  RateLimit  = require('express-rate-limit');
+
+ app.enable('trust proxy');
+
+ var translateLimiter = RateLimit({
+   windowMs: 60 * 1000,
+   delayMs: 1,
+   max: 10,
+   global: false
+ });
+
+ var identifyLimiter = RateLimit({
+   windowMs: 60 * 1000,
+   delayMs: 1,
+   max: 10,
+   global: false
+ });
 
 // Bootstrap application settings
 require('./config/express')(app);
 
-// if bluemix credentials exists, then override local
-var credentials =  extend({
-  username: '<username>',
-  password: '<password>',
+var language_translation = watson.language_translation({
+  url: 'https://gateway.watsonplatform.net/language-translation/api',
+  password: 'USERNAME',
+  username: 'PASSWORD',
   version: 'v2'
-}, bluemix.getServiceCreds('language-translation')); // VCAP_SERVICES
-
-var language_translation = watson.language_translation(credentials);
+});
 
 // render index page
 app.get('/', function(req, res) {
@@ -49,7 +63,7 @@ app.get('/api/models', function(req, res, next) {
   });
 });
 
-app.post('/api/identify', function(req, res, next) {
+app.post('/api/identify', identifyLimiter, function(req, res, next) {
   console.log('/v2/identify');
   var params = {
     text: req.body.textData,
@@ -73,7 +87,7 @@ app.get('/api/identifiable_languages', function(req, res, next) {
   });
 });
 
-app.post('/api/translate', function(req, res, next) {
+app.post('/api/translate', translateLimiter,  function(req, res, next) {
   console.log('/v2/translate');
   var params = extend({ 'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')}, req.body);
   language_translation.translate(params, function(err, models) {
@@ -85,7 +99,7 @@ app.post('/api/translate', function(req, res, next) {
 });
 
 // express error handler
-require('./config/express-error-handler')(app);
+require('./config/error-handler')(app);
 
 var port = process.env.VCAP_APP_PORT || 3000;
 app.listen(port);
