@@ -18,8 +18,6 @@
 
 var express  = require('express'),
   app        = express(),
-  bluemix    = require('./config/bluemix'),
-  extend     = require('util')._extend,
   watson     = require('watson-developer-cloud'),
   RateLimit  = require('express-rate-limit');
 
@@ -42,14 +40,11 @@ var express  = require('express'),
 // Bootstrap application settings
 require('./config/express')(app);
 
-// if bluemix credentials exists, then override local
-var credentials =  extend({
+var language_translation = watson.language_translation({
   username: '<username>',
   password: '<password>',
   version: 'v2'
-}, bluemix.getServiceCreds('language-translation')); // VCAP_SERVICES
-
-var language_translation = watson.language_translation(credentials);
+});
 
 // render index page
 app.get('/', function(req, res) {
@@ -102,7 +97,7 @@ app.post('/api/translate', translateLimiter,  function(req, res, next) {
 });
 
 // express error handler
-require('./config/express-error-handler')(app);
+require('./config/error-handler')(app);
 
 var port = process.env.VCAP_APP_PORT || 3000;
 app.listen(port);

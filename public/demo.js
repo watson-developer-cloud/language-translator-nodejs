@@ -207,7 +207,7 @@ $(document).ready(function() {
             }
         }
 
-        // If model is not found then check the language translation
+        // If model is not found then check the language translator
         if (modelId === '') {
             alert('Select correct translation language.');
             $('#dropdownMenuOutput').focus();
