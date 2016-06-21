@@ -18,6 +18,7 @@
 
 var express  = require('express'),
   app        = express(),
+  extend     = require('extend'),
   watson     = require('watson-developer-cloud'),
   RateLimit  = require('express-rate-limit');
 
@@ -41,8 +42,9 @@ var express  = require('express'),
 require('./config/express')(app);
 
 var language_translation = watson.language_translation({
-  username: '<username>',
-  password: '<password>',
+  url: 'https://gateway.watsonplatform.net/language-translation/api',
+  password: 'USERNAME',
+  username: 'PASSWORD',
   version: 'v2'
 });
 
