@@ -57,9 +57,9 @@ app.post('/api/identify', function(req, res, next) {
     'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')
   };
   language_translator.identify(params, function(err, models) {
-      if (err)
-        return next(err);
-      else
+    if (err)
+      return next(err);
+    else
         res.json(models);
   });
 });
