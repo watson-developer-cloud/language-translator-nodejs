@@ -1,7 +1,0 @@
-node_modules
-packages
-.git
-public/js/jquery*
-public/js/tab.js
-public/js/prism*
-public/js/css_browser_selector*

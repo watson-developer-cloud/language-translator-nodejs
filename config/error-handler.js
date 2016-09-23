@@ -27,13 +27,14 @@ module.exports = function (app) {
   });
 
   // error handler
-  app.use(function(err, req, res, next) {
-    var error = {
-      code: err.code || 500,
-      error: err.message || err.error
-    };
-    console.log('error:', error);
-    res.status(error.code).json(error);
-  });
+  // eslint-disable-next-line
+    app.use(function(err, req, res, next) {
+      var error = {
+        code: err.code || 500,
+        error: err.message || err.error
+      };
+      console.log('error:', error);
+      res.status(error.code).json(error);
+    });
 
 };
