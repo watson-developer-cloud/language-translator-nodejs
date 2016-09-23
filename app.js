@@ -16,36 +16,23 @@
 
 'use strict';
 
+require('dotenv').load({silent: true});
 var express  = require('express'),
   app        = express(),
   extend     = require('extend'),
-  watson     = require('watson-developer-cloud'),
-  RateLimit  = require('express-rate-limit');
+  LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 
- app.enable('trust proxy');
 
- var translateLimiter = RateLimit({
-   windowMs: 60 * 1000,
-   delayMs: 1,
-   max: 10,
-   global: false
- });
-
- var identifyLimiter = RateLimit({
-   windowMs: 60 * 1000,
-   delayMs: 1,
-   max: 10,
-   global: false
- });
 
 // Bootstrap application settings
 require('./config/express')(app);
 
-var language_translation = watson.language_translation({
-  url: 'https://gateway.watsonplatform.net/language-translation/api',
-  password: 'USERNAME',
-  username: 'PASSWORD',
-  version: 'v2'
+
+var language_translator = new LanguageTranslatorV2({
+  // If unspecified here, the LANGUAGE_TRANSLATOR_USERNAME and LANGUAGE_TRANSLATOR_PASSWORD environment properties will be checked
+  // After that, the SDK will fall back to the bluemix-provided VCAP_SERVICES environment property
+  // username: '<username>',
+  // password: '<password>'
 });
 
 // render index page
@@ -55,7 +42,7 @@ app.get('/', function(req, res) {
 
 app.get('/api/models', function(req, res, next) {
   console.log('/v2/models');
-  language_translation.getModels({}, function(err, models) {
+  language_translator.getModels({}, function(err, models) {
     if (err)
       return next(err);
     else
@@ -63,13 +50,13 @@ app.get('/api/models', function(req, res, next) {
   });
 });
 
-app.post('/api/identify', identifyLimiter, function(req, res, next) {
+app.post('/api/identify', function(req, res, next) {
   console.log('/v2/identify');
   var params = {
     text: req.body.textData,
     'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')
   };
-  language_translation.identify(params, function(err, models) {
+  language_translator.identify(params, function(err, models) {
       if (err)
         return next(err);
       else
@@ -79,7 +66,7 @@ app.post('/api/identify', identifyLimiter, function(req, res, next) {
 
 app.get('/api/identifiable_languages', function(req, res, next) {
   console.log('/v2/identifiable_languages');
-  language_translation.getIdentifiableLanguages({}, function(err, models) {
+  language_translator.getIdentifiableLanguages({}, function(err, models) {
     if (err)
       return next(err);
     else
@@ -87,10 +74,10 @@ app.get('/api/identifiable_languages', function(req, res, next) {
   });
 });
 
-app.post('/api/translate', translateLimiter,  function(req, res, next) {
+app.post('/api/translate',  function(req, res, next) {
   console.log('/v2/translate');
   var params = extend({ 'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')}, req.body);
-  language_translation.translate(params, function(err, models) {
+  language_translator.translate(params, function(err, models) {
     if (err)
       return next(err);
     else
