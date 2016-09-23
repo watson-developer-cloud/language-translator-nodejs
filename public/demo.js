@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-'use strict'
+/* global modelId */
+/*eslint no-native-reassign: "off"*/
+'use strict';
 
 $(document).ready(function () {
   var modelList = '';
@@ -24,7 +25,7 @@ $(document).ready(function () {
   var langAbbrevList = [];
 
   // Update input-output dropdown based on selected domain
-  $("input:radio[name=group1]").click(function () {
+  $('input:radio[name=group1]').click(function () {
     sourceList = [];
     pageDomain = $(this).val();
 
@@ -32,14 +33,14 @@ $(document).ready(function () {
     $('#resetSpan').trigger('click');
 
     // Autodetect language option
-    $("#ulSourceLang").append('<li role="presentation"><a role="menuitem" tabindex="-1" >Detect Language</a></li>');
+    $('#ulSourceLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >Detect Language</a></li>');
     // Update language array based on domain
     for (var x in modelList) {
       for (var y in modelList[x]) {
         var sourceVal = '';
         var targetVal = '';
         // if model has the domain property then add the language in dropdown list. Otherwise add 'news' domain to JSON model list
-        if (!(modelList[x][y].hasOwnProperty("domain"))) {
+        if (!(modelList[x][y].hasOwnProperty('domain'))) {
           modelList[x][y].domain = 'news';
           //console.log('no domain');
         }
@@ -58,36 +59,33 @@ $(document).ready(function () {
     }
 
     // Update Input Dropdown Menu with Source Language
-    $("#ulSourceLang").html('');
-    $("#ulSourceLang").append('<li role="presentation"><a role="menuitem" tabindex="-1" >Detect Language</a></li>');
-    $("#ulTargetLang").html('');
+    $('#ulSourceLang').html('');
+    $('#ulSourceLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >Detect Language</a></li>');
+    $('#ulTargetLang').html('');
     fillInDropdown('ulSourceLang');
   });
 
   // Get list of Models after getting languages
   $.ajax({
-      type: 'GET',
-      url: "/api/models",
-      async: true
-    })
+    type: 'GET',
+    url: '/api/models',
+    async: true
+  })
     .done(function (data) {
       //console.log(data + " response received");
       modelList = data;
 
       // Get list of languages
       $.ajax({
-          type: 'GET',
-          url: "/api/identifiable_languages",
-          async: true
-        })
+        type: 'GET',
+        url: '/api/identifiable_languages',
+        async: true
+      })
         .done(function (data) {
           //console.log(data);
           langAbbrevList = data;
           // select news option in domain and update dropdown with language selections
-          $("input:radio[name=group1]:nth(1)").prop("checked", true).trigger("click");
-        })
-        .fail(function (jqXHR, statustext, errorthrown) {
-          //console.log(statustext + errorthrown + ' error');
+          $('input:radio[name=group1]:nth(1)').prop('checked', true).trigger('click');
         });
     })
     .fail(function (jqXHR, statustext, errorthrown) {
@@ -99,11 +97,11 @@ $(document).ready(function () {
     e.preventDefault();
     sourceLangSelect = $.trim($(this).text());
     //console.log('click href ' + sourceLangSelect);
-    $("#dropdownMenuInput").html('').html(sourceLangSelect + '<span class="caret"></span>');
-    $('#demoSubmit').attr("disabled", false);
+    $('#dropdownMenuInput').html('').html(sourceLangSelect + '<span class="caret"></span>');
+    $('#demoSubmit').attr('disabled', false);
 
     // if Choose lang or detect lang is selected again then send request for lang id service
-    if (sourceLangSelect.toLowerCase().indexOf("language") >= 0) {
+    if (sourceLangSelect.toLowerCase().indexOf('language') >= 0) {
       if (parseInt($('#home textarea').val().length) > 0) {
         doneTyping();
       }
@@ -116,7 +114,7 @@ $(document).ready(function () {
   $('#ulTargetLang').on('click', 'a', function (e) {
     e.preventDefault();
     //console.log('click href ' + $(this).text());
-    $("#dropdownMenuOutput").html('').html($(this).text() + '<span class="caret"></span>');
+    $('#dropdownMenuOutput').html('').html($(this).text() + '<span class="caret"></span>');
     getTranslation();
   });
 
@@ -134,8 +132,8 @@ $(document).ready(function () {
       $('#profile2 textarea').val('');
 
       if ((sourceLangSelect.toLowerCase() === 'detect language') || (sourceLangSelect.toLowerCase() === 'choose language')) {
-        $("#dropdownMenuInput").html('').html('Choose Language <span class="caret"></span>');
-        $("#dropdownMenuOutput").html('').html('Choose Language <span class="caret"></span>');
+        $('#dropdownMenuInput').html('').html('Choose Language <span class="caret"></span>');
+        $('#dropdownMenuOutput').html('').html('Choose Language <span class="caret"></span>');
       }
     }
     clearTimeout(typingTimer);
@@ -152,9 +150,9 @@ $(document).ready(function () {
   // Reset all the values on page
   $('#resetSpan').click(function (e) {
     e.preventDefault();
-    $("#dropdownMenuInput").html('').html('Choose Language <span class="caret"></span>');
-    $("#dropdownMenuOutput").html('').html('Choose Language <span class="caret"></span>');
-    $('#demoSubmit').attr("disabled", false);
+    $('#dropdownMenuInput').html('').html('Choose Language <span class="caret"></span>');
+    $('#dropdownMenuOutput').html('').html('Choose Language <span class="caret"></span>');
+    $('#demoSubmit').attr('disabled', false);
     $('#home textarea').val('');
     $('#home2 textarea').val('');
     $('#profile textarea').val('');
@@ -163,26 +161,26 @@ $(document).ready(function () {
   });
 
   // Translation form is submitted
-  $("#demoSubmit").button().click(function () {
+  $('#demoSubmit').button().click(function () {
     //var modelId = '';
     // Validations
-    if ($("input:radio[name='group1']").is(":checked")) {
-      var pageDomain = $("input:radio[name=group1]:checked").val();
+    if ($('input:radio[name=\'group1\']').is(':checked')) {
+      var pageDomain = $('input:radio[name=group1]:checked').val();
     } else {
       alert('Select Domain.');
       return false;
     }
 
-    if (($("#dropdownMenuInput").text()).toLowerCase().indexOf("language") < 0) {
-      var source = getLanguageCode($.trim($("#dropdownMenuInput").text()));
+    if (($('#dropdownMenuInput').text()).toLowerCase().indexOf('language') < 0) {
+      var source = getLanguageCode($.trim($('#dropdownMenuInput').text()));
       //console.log(source + '  source ');
     } else {
       alert('Select Input Language.');
       return false;
     }
 
-    if (($("#dropdownMenuOutput").text()).toLowerCase().indexOf("language") < 0) {
-      var target = getLanguageCode($.trim($("#dropdownMenuOutput").text()));
+    if (($('#dropdownMenuOutput').text()).toLowerCase().indexOf('language') < 0) {
+      var target = getLanguageCode($.trim($('#dropdownMenuOutput').text()));
     } else {
       alert('Select Output Language.');
       return false;
@@ -191,14 +189,14 @@ $(document).ready(function () {
     var textContent = $('#home textarea').val();
     if (textContent === '') {
       alert('Input Text cannot be empty.');
-      $("#dropdownMenuOutput").focus();
+      $('#dropdownMenuOutput').focus();
       return false;
     }
 
     for (var x in modelList) {
       for (var y in modelList[x]) {
         // Get modal_id for AJAX call
-        if (modelList[x][y].hasOwnProperty("domain")) {
+        if (modelList[x][y].hasOwnProperty('domain')) {
           var modelListDomain = modelList[x][y].domain.toString();
           if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[x][y].source && target === modelList[x][y].target) {
             modelId = modelList[x][y].model_id;
@@ -225,7 +223,7 @@ $(document).ready(function () {
 
     var restAPICall = {
       type: 'POST',
-      url: "/api/translate",
+      url: '/api/translate',
       data: callData,
       headers: {
         'X-WDC-PL-OPT-OUT': $('input:radio[name=serRadio]:radio:checked').val()
@@ -257,7 +255,7 @@ $(document).ready(function () {
       // Create call for AJAX and to get Lang-Id for text
       var restAPICall = {
         type: 'POST',
-        url: "/api/identify",
+        url: '/api/identify',
         data: {
           textData: $('#home textarea').val()
         },
@@ -271,7 +269,7 @@ $(document).ready(function () {
           //console.log(data + "  data " + langAbbrevList[data]);
           var langIdentified = false;
           //console.log("detected language code is " + data);
-          data = data.languages[0].language
+          data = data.languages[0].language;
           var dataLangName = getLanguageName(data);
           //console.log("detected language as " + dataLangName);
           $.each(sourceList, function (index, value) {
@@ -283,22 +281,21 @@ $(document).ready(function () {
 
           if (langIdentified) {
             //console.log('lang identified');
-            $('#demoSubmit').attr("disabled", false);
+            $('#demoSubmit').attr('disabled', false);
             // If souce lang is same as identified land then add in dropdown Input menu
-            $("#dropdownMenuInput").html('').html(dataLangName + ' <span class="caret"></span>');
+            $('#dropdownMenuInput').html('').html(dataLangName + ' <span class="caret"></span>');
           } else {
             //console.log('lang not identified');
-            $('#demoSubmit').attr("disabled", true);
-            $("#dropdownMenuInput").html('').html(dataLangName + ': not supported for this domain <span class="caret"></span>');
+            $('#demoSubmit').attr('disabled', true);
+            $('#dropdownMenuInput').html('').html(dataLangName + ': not supported for this domain <span class="caret"></span>');
           }
           // update outputDropDown only when the detected source changed
           if (oldSrcLang != $('#dropdownMenuInput').html())
             updateOutputDropdownMenu();
           getTranslation();
         })
-        .always(function (data) {
-          //console.log('gettranslation');
-          getTranslation()
+        .always(function () {
+          getTranslation();
         })
         .fail(function (jqXHR, statustext, errorthrown) {
           $('#dropdownMenuInput').html(oldSrcLang);
@@ -306,12 +303,15 @@ $(document).ready(function () {
         });
     } else {
       //console.log('gettranslation  not in if');
-      getTranslation()
+      getTranslation();
     }
   }
 
   // get Language Name from abbreviation
   function getLanguageName(langAbbrev) {
+    if (langAbbrev === 'arz') {
+      return 'Egyptian Arabic language';
+    }
     var test = langAbbrevList.languages;
     for (var i = 0; i < test.length; i++) {
       //console.log ('length ' + langAbbrev.length);
@@ -340,33 +340,33 @@ $(document).ready(function () {
   // Fill in dropdown menu
   function fillInDropdown(ulName) {
     $.each(sourceList, function (index, value) {
-      if ($("#" + ulName + ' li:contains("' + value.source + '")').length) {
+      if ($('#' + ulName + ' li:contains("' + value.source + '")').length) {
         console.log('source lang already exist in li list');
       } else {
-        $("#" + ulName).append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.source + '</a></li>');
+        $('#' + ulName).append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.source + '</a></li>');
       }
     });
   }
 
   function updateOutputDropdownMenu() {
-    $("#ulTargetLang").html('');
-    $("#dropdownMenuOutput").html('').html('Choose Language <span class="caret"></span>');
+    $('#ulTargetLang').html('');
+    $('#dropdownMenuOutput').html('').html('Choose Language <span class="caret"></span>');
 
     // Update output dropdown menu with target language
     $.each(sourceList, function (index, value) {
       //console.log(value.source + ' source value ' +  $("#dropdownMenuInput").text());
-      if (value.source == $.trim($("#dropdownMenuInput").text())) {
-        if (!($("#ulTargetLang li:contains('" + value.target + "')").length)) {
+      if (value.source == $.trim($('#dropdownMenuInput').text())) {
+        if (!($('#ulTargetLang li:contains(\'' + value.target + '\')').length)) {
           //console.log('source lang already exist in li list');
           //}
           //else {
-          $("#ulTargetLang").append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.target + '</a></li>');
+          $('#ulTargetLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.target + '</a></li>');
         }
       }
     });
 
-    if ($("#ulTargetLang li").length == 1) {
-      $("#dropdownMenuOutput").html('').html($($('#ulTargetLang a')).text() + '<span class="caret"></span>');
+    if ($('#ulTargetLang li').length == 1) {
+      $('#dropdownMenuOutput').html('').html($($('#ulTargetLang a')).text() + '<span class="caret"></span>');
     }
   }
 
@@ -376,18 +376,17 @@ $(document).ready(function () {
     var source = '';
     var target = '';
     var textContent = '';
-    var modelId = '';
 
-    if ($("input:radio[name='group1']").is(":checked")) {
-      pageDomain = $("input:radio[name=group1]:checked").val();
+    if ($('input:radio[name=\'group1\']').is(':checked')) {
+      pageDomain = $('input:radio[name=group1]:checked').val();
     }
 
-    if (($("#dropdownMenuInput").text()).toLowerCase().indexOf("language") < 0) {
-      source = getLanguageCode($.trim($("#dropdownMenuInput").text()));
+    if (($('#dropdownMenuInput').text()).toLowerCase().indexOf('language') < 0) {
+      source = getLanguageCode($.trim($('#dropdownMenuInput').text()));
     }
 
-    if (($("#dropdownMenuOutput").text()).toLowerCase().indexOf("language") < 0) {
-      target = getLanguageCode($.trim($("#dropdownMenuOutput").text()));
+    if (($('#dropdownMenuOutput').text()).toLowerCase().indexOf('language') < 0) {
+      target = getLanguageCode($.trim($('#dropdownMenuOutput').text()));
     }
 
     if ((parseInt($('#home textarea').val().length) > 0)) {
@@ -408,9 +407,9 @@ $(document).ready(function () {
 
       var restAPICall = {
         type: 'POST',
-        url: "/api/translate",
+        url: '/api/translate',
         data: callData,
-        dataType: "json",
+        dataType: 'json',
         headers: {
           'X-WDC-PL-OPT-OUT': $('input:radio[name=serRadio]:radio:checked').val()
         },
@@ -439,7 +438,7 @@ $(document).ready(function () {
     var modelId = '';
     for (var x in modelList) {
       for (var y in modelList[x]) {
-        if (modelList[x][y].hasOwnProperty("domain")) {
+        if (modelList[x][y].hasOwnProperty('domain')) {
           var modelListDomain = modelList[x][y].domain.toString();
           if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[x][y].source && target === modelList[x][y].target) {
             modelId = modelList[x][y].model_id;
@@ -451,9 +450,9 @@ $(document).ready(function () {
     return modelId;
   }
 
-  $('#nav-tabs a').click(function(e) {
-    e.preventDefault()
-    $(this).tab('show')
+  $('#nav-tabs a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
   });
 
 });

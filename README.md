@@ -1,10 +1,10 @@
-# Language Translator Nodejs Starter Application
+# Language Translator Node.js [![Build Status](https://travis-ci.org/watson-developer-cloud/language-translator-nodejs.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/language-translator-nodejs)
 
   The IBM Watson&trade; [Language Translator][service_url] service provides an Application Programming Interface (API) that lets you identify the language of text, and then use a custom business domain to translate the text from one supported language to another.  
   You can translate either by letting the service identify the source language or by selecting a source language and then by selecting a target language, and a business domain. Domain translation is linguistically targeted these business domains:
-  *  *The News domain* – targeted at news articles and transcripts, it translates English to and from French, Spanish, Portuguese or Arabic.
-  *  *The Conversational domain* – targeted at conversational colloquialisms, it translates English to and from French, Spanish, Portuguese or Arabic.
-  *  *The Patent domain* – targeted at technical and legal terminology, it translates Spanish, Portuguese, Chinese, or Korean to English.
+  * *The News domain* - targeted at news articles and transcripts, it translates English to and from Arabic, Brazilian Portuguese, French, Italian, or Spanish. It also translates Spanish to and from French.
+  * *The Conversational domain* - targeted at conversational colloquialisms, it translates English to and from Arabic, Brazilian Portuguese, French, Italian, or Spanish.
+  * *The Patent domain* - targeted at technical and legal terminology, it translates Brazilian Portuguese, Chinese, Korean, or Spanish to English.
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
@@ -93,7 +93,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 1. Install the Language Translator Node.js package:
     1. Change to the new directory that contains the project.
-    2. Run the following command:node
+    2. Run the following command:
 
     ```node
     $ npm install
@@ -132,7 +132,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
 
 [cloud_foundry]: https://github.com/cloudfoundry/cli
-[service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/language-translation.html
+[service_url]: http://www.ibm.com/watson/developercloud/language-translation.html
 [getting_started]: https://www.youtube.com/watch?v=X95CMuQys-g
 [sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
-[docs]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/language-translation
+[docs]: http://www.ibm.com/watson/developercloud/doc/language-translation
