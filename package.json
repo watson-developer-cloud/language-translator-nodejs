@@ -36,7 +36,8 @@
   "scripts": {
     "start": "node app.js",
     "validate": "npm ls",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "npm run lint"
   },
   "devDependencies": {
     "eslint": "^3.5.0"

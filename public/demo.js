@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/* global modelId */
 /*eslint no-native-reassign: "off"*/
 'use strict';
 
 $(document).ready(function () {
-  var modelList = '';
+  var modelList = [];
   var pageDomain = '';
   var sourceList = [];
   var sourceLangSelect = 'Choose Language';
@@ -35,26 +34,25 @@ $(document).ready(function () {
     // Autodetect language option
     $('#ulSourceLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >Detect Language</a></li>');
     // Update language array based on domain
-    for (var x in modelList) {
-      for (var y in modelList[x]) {
-        var sourceVal = '';
-        var targetVal = '';
-        // if model has the domain property then add the language in dropdown list. Otherwise add 'news' domain to JSON model list
-        if (!(modelList[x][y].hasOwnProperty('domain'))) {
-          modelList[x][y].domain = 'news';
-          //console.log('no domain');
-        }
-        var modelListDomain = modelList[x][y].domain.toString();
-        //console.log(modelListDomain.toLowerCase() + ' DOMAIN ' + pageDomain.toString().toLowerCase() );
-        if (modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) {
-          sourceVal = getLanguageName(modelList[x][y].source);
-          targetVal = getLanguageName(modelList[x][y].target);
-          sourceList.push({
-            source: sourceVal,
-            target: targetVal
-          });
-          //console.log("source" + sourceVal + "target" + targetVal);
-        }
+
+    for (var y in modelList) {
+      var sourceVal = '';
+      var targetVal = '';
+      // if model has the domain property then add the language in dropdown list. Otherwise add 'news' domain to JSON model list
+      if (!(modelList[y].hasOwnProperty('domain'))) {
+        modelList[y].domain = 'news';
+        //console.log('no domain');
+      }
+      var modelListDomain = modelList[y].domain.toString();
+      //console.log(modelListDomain.toLowerCase() + ' DOMAIN ' + pageDomain.toString().toLowerCase() );
+      if (modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) {
+        sourceVal = getLanguageName(modelList[y].source);
+        targetVal = getLanguageName(modelList[y].target);
+        sourceList.push({
+          source: sourceVal,
+          target: targetVal
+        });
+        //console.log("source" + sourceVal + "target" + targetVal);
       }
     }
 
@@ -73,7 +71,7 @@ $(document).ready(function () {
   })
     .done(function (data) {
       //console.log(data + " response received");
-      modelList = data;
+      modelList = data.models;
 
       // Get list of languages
       $.ajax({
@@ -83,7 +81,7 @@ $(document).ready(function () {
       })
         .done(function (data) {
           //console.log(data);
-          langAbbrevList = data;
+          langAbbrevList = data.languages;
           // select news option in domain and update dropdown with language selections
           $('input:radio[name=group1]:nth(1)').prop('checked', true).trigger('click');
         });
@@ -98,7 +96,6 @@ $(document).ready(function () {
     sourceLangSelect = $.trim($(this).text());
     //console.log('click href ' + sourceLangSelect);
     $('#dropdownMenuInput').html('').html(sourceLangSelect + '<span class="caret"></span>');
-    $('#demoSubmit').attr('disabled', false);
 
     // if Choose lang or detect lang is selected again then send request for lang id service
     if (sourceLangSelect.toLowerCase().indexOf('language') >= 0) {
@@ -132,8 +129,8 @@ $(document).ready(function () {
       $('#profile2 textarea').val('');
 
       if ((sourceLangSelect.toLowerCase() === 'detect language') || (sourceLangSelect.toLowerCase() === 'choose language')) {
-        $('#dropdownMenuInput').html('').html('Choose Language <span class="caret"></span>');
-        $('#dropdownMenuOutput').html('').html('Choose Language <span class="caret"></span>');
+        $('#dropdownMenuInput').html('Choose Language <span class="caret"></span>');
+        $('#dropdownMenuOutput').html('Choose Language <span class="caret"></span>');
       }
     }
     clearTimeout(typingTimer);
@@ -150,100 +147,14 @@ $(document).ready(function () {
   // Reset all the values on page
   $('#resetSpan').click(function (e) {
     e.preventDefault();
-    $('#dropdownMenuInput').html('').html('Choose Language <span class="caret"></span>');
-    $('#dropdownMenuOutput').html('').html('Choose Language <span class="caret"></span>');
-    $('#demoSubmit').attr('disabled', false);
+    $('#dropdownMenuInput').html('Choose Language <span class="caret"></span>');
+    $('#dropdownMenuOutput').html('Choose Language <span class="caret"></span>');
     $('#home textarea').val('');
     $('#home2 textarea').val('');
     $('#profile textarea').val('');
     $('#profile2 textarea').val('');
     sourceLangSelect = 'Choose Language';
   });
-
-  // Translation form is submitted
-  $('#demoSubmit').button().click(function () {
-    //var modelId = '';
-    // Validations
-    if ($('input:radio[name=\'group1\']').is(':checked')) {
-      var pageDomain = $('input:radio[name=group1]:checked').val();
-    } else {
-      alert('Select Domain.');
-      return false;
-    }
-
-    if (($('#dropdownMenuInput').text()).toLowerCase().indexOf('language') < 0) {
-      var source = getLanguageCode($.trim($('#dropdownMenuInput').text()));
-      //console.log(source + '  source ');
-    } else {
-      alert('Select Input Language.');
-      return false;
-    }
-
-    if (($('#dropdownMenuOutput').text()).toLowerCase().indexOf('language') < 0) {
-      var target = getLanguageCode($.trim($('#dropdownMenuOutput').text()));
-    } else {
-      alert('Select Output Language.');
-      return false;
-    }
-
-    var textContent = $('#home textarea').val();
-    if (textContent === '') {
-      alert('Input Text cannot be empty.');
-      $('#dropdownMenuOutput').focus();
-      return false;
-    }
-
-    for (var x in modelList) {
-      for (var y in modelList[x]) {
-        // Get modal_id for AJAX call
-        if (modelList[x][y].hasOwnProperty('domain')) {
-          var modelListDomain = modelList[x][y].domain.toString();
-          if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[x][y].source && target === modelList[x][y].target) {
-            modelId = modelList[x][y].model_id;
-          }
-        }
-      }
-    }
-
-    // If model is not found then check the language translator
-    if (modelId === '') {
-      alert('Select correct translation language.');
-      $('#dropdownMenuOutput').focus();
-      return false;
-    }
-
-    //console.log('source-' + source + '  target-' + target + '   textContent-' + textContent);
-
-    // Create call for AJAX and to populate REST API tab
-    var callData = {
-      text: textContent,
-      source: source,
-      target: target
-    };
-
-    var restAPICall = {
-      type: 'POST',
-      url: '/api/translate',
-      data: callData,
-      headers: {
-        'X-WDC-PL-OPT-OUT': $('input:radio[name=serRadio]:radio:checked').val()
-      },
-      async: true
-    };
-
-    $('#profile textarea').val(JSON.stringify(callData, null, 2));
-
-    $.ajax(restAPICall)
-      .done(function (data) {
-        //console.log(data['translations'][0]['translation'] + " translation");
-        $('#home2 textarea').val(data['translations'][0]['translation']);
-        $('#profile2 textarea').val(JSON.stringify(data, null, 2));
-      })
-      .fail(function (jqXHR, statustext, errorthrown) {
-        console.log(statustext + errorthrown);
-      });
-  });
-  // Translation submit till here
 
   /* -------------------------------- Functions start from here ---------------------------------------- */
 
@@ -281,12 +192,10 @@ $(document).ready(function () {
 
           if (langIdentified) {
             //console.log('lang identified');
-            $('#demoSubmit').attr('disabled', false);
             // If souce lang is same as identified land then add in dropdown Input menu
             $('#dropdownMenuInput').html('').html(dataLangName + ' <span class="caret"></span>');
           } else {
             //console.log('lang not identified');
-            $('#demoSubmit').attr('disabled', true);
             $('#dropdownMenuInput').html('').html(dataLangName + ': not supported for this domain <span class="caret"></span>');
           }
           // update outputDropDown only when the detected source changed
@@ -309,10 +218,12 @@ $(document).ready(function () {
 
   // get Language Name from abbreviation
   function getLanguageName(langAbbrev) {
+    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Egyptian Arabic
+    // so it's hard-coded for now
     if (langAbbrev === 'arz') {
-      return 'Egyptian Arabic language';
+      return 'Egyptian Arabic';
     }
-    var test = langAbbrevList.languages;
+    var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
       //console.log ('length ' + langAbbrev.length);
       var langString = (langAbbrev.length == 2) ? test[i].language.substring(0, 2) : test[i].language;
@@ -327,7 +238,12 @@ $(document).ready(function () {
 
   // get abbreviation of language from Name
   function getLanguageCode(langName) {
-    var test = langAbbrevList.languages;
+    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Egyptian Arabic
+    // so it's hard-coded for now
+    if (langName === 'Egyptian Arabic') {
+      return 'arz';
+    }
+    var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
       //console.log(test[i].name + '  dd   '+ langName);
       if (test[i].name == langName) {
@@ -381,11 +297,11 @@ $(document).ready(function () {
       pageDomain = $('input:radio[name=group1]:checked').val();
     }
 
-    if (($('#dropdownMenuInput').text()).toLowerCase().indexOf('language') < 0) {
+    if (($('#dropdownMenuInput').text()).toLowerCase().indexOf('choose language') < 0) {
       source = getLanguageCode($.trim($('#dropdownMenuInput').text()));
     }
 
-    if (($('#dropdownMenuOutput').text()).toLowerCase().indexOf('language') < 0) {
+    if (($('#dropdownMenuOutput').text()).toLowerCase().indexOf('choose language') < 0) {
       target = getLanguageCode($.trim($('#dropdownMenuOutput').text()));
     }
 
@@ -436,17 +352,17 @@ $(document).ready(function () {
   // Get model_id from domain, source , target
   function getModelId(pageDomain, source, target) {
     var modelId = '';
-    for (var x in modelList) {
-      for (var y in modelList[x]) {
-        if (modelList[x][y].hasOwnProperty('domain')) {
-          var modelListDomain = modelList[x][y].domain.toString();
-          if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[x][y].source && target === modelList[x][y].target) {
-            modelId = modelList[x][y].model_id;
-            return modelId;
-          }
+
+    for (var y in modelList) {
+      if (modelList[y].hasOwnProperty('domain')) {
+        var modelListDomain = modelList[y].domain.toString();
+        if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[y].source && target === modelList[y].target) {
+          modelId = modelList[y].model_id;
+          return modelId;
         }
       }
     }
+
     return modelId;
   }
 
