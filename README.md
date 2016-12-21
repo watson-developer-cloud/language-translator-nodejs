@@ -132,7 +132,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
 
 [cloud_foundry]: https://github.com/cloudfoundry/cli
-[service_url]: http://www.ibm.com/watson/developercloud/language-translation.html
+[service_url]: http://www.ibm.com/watson/developercloud/language-translator.html
 [getting_started]: https://www.youtube.com/watch?v=X95CMuQys-g
-[sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
-[docs]: http://www.ibm.com/watson/developercloud/doc/language-translation
+[sign_up]: https://console.ng.bluemix.net/registration/
+[docs]: http://www.ibm.com/watson/developercloud/doc/language-translator

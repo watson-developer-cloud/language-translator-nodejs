@@ -28,11 +28,12 @@ var express  = require('express'),
 require('./config/express')(app);
 
 
-var language_translator = new LanguageTranslatorV2({
+var translator = new LanguageTranslatorV2({
   // If unspecified here, the LANGUAGE_TRANSLATOR_USERNAME and LANGUAGE_TRANSLATOR_PASSWORD environment properties will be checked
   // After that, the SDK will fall back to the bluemix-provided VCAP_SERVICES environment property
   // username: '<username>',
   // password: '<password>'
+  url: 'https://gateway.watsonplatform.net/language-translator/api'
 });
 
 // render index page
@@ -42,7 +43,7 @@ app.get('/', function(req, res) {
 
 app.get('/api/models', function(req, res, next) {
   console.log('/v2/models');
-  language_translator.getModels({}, function(err, models) {
+  translator.getModels({}, function(err, models) {
     if (err)
       return next(err);
     else
@@ -56,7 +57,7 @@ app.post('/api/identify', function(req, res, next) {
     text: req.body.textData,
     'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')
   };
-  language_translator.identify(params, function(err, models) {
+  translator.identify(params, function(err, models) {
     if (err)
       return next(err);
     else
@@ -66,7 +67,7 @@ app.post('/api/identify', function(req, res, next) {
 
 app.get('/api/identifiable_languages', function(req, res, next) {
   console.log('/v2/identifiable_languages');
-  language_translator.getIdentifiableLanguages({}, function(err, models) {
+  translator.getIdentifiableLanguages({}, function(err, models) {
     if (err)
       return next(err);
     else
@@ -77,7 +78,7 @@ app.get('/api/identifiable_languages', function(req, res, next) {
 app.post('/api/translate',  function(req, res, next) {
   console.log('/v2/translate');
   var params = extend({ 'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')}, req.body);
-  language_translator.translate(params, function(err, models) {
+  translator.translate(params, function(err, models) {
     if (err)
       return next(err);
     else
