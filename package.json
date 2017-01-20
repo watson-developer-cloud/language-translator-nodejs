@@ -3,16 +3,16 @@
   "version": "0.3.10",
   "description": "A sample nodejs app for Bluemix that use the Language Translator service",
   "dependencies": {
-    "body-parser": "~1.15.2",
-    "dotenv": "~2.0.0",
+    "body-parser": "~1.16.0",
+    "dotenv": "~4.0.0",
     "express": "~4.14.0",
     "express-rate-limit": "~2.6.0",
     "express-secure-only": "^0.2.1",
     "extend": "~3.0.0",
-    "helmet": "~3.1.0",
+    "helmet": "~3.4.0",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
-    "watson-developer-cloud": "~2.14.2"
+    "watson-developer-cloud": "~2.15.2"
   },
   "engines": {
     "node": ">=6.0",
@@ -40,6 +40,6 @@
     "test": "npm run lint"
   },
   "devDependencies": {
-    "eslint": "^3.5.0"
+    "eslint": "^3.13.1"
   }
 }

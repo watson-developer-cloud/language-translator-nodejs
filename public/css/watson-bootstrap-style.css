@@ -51,7 +51,7 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  overflow-y: scroll; 
+  overflow-y: scroll;
 }
 body {
   margin: 0;
@@ -150,7 +150,7 @@ hr {
   color: #E0E0E0; /*gray 10*/
   border: 0 none;
   margin-bottom: 2em;
-  margin-bottom: 1em; 
+  margin-bottom: 1em;
   height: 1.5px;
 }
 pre {
@@ -1452,7 +1452,7 @@ table {
 th {
   text-align: left;
   background-color: #c0e6ff; /* blue 10*/
-/*  border-top: 2px solid #325c80;*/ 
+/*  border-top: 2px solid #325c80;*/
 }
 .table {
   width: 100%;
@@ -1735,7 +1735,7 @@ table {
       text-transform: uppercase;
       font-weight: 700;
       color: #325c80; /*blue 60*/
-      
+
     }
   }
 
@@ -5616,12 +5616,12 @@ table.table,
   padding: 1em;
 }
 .table-scroll {
-  overflow:auto;  
+  overflow:auto;
 /*  margin-top:20px;*/
   max-width: 1120px;
 }
 .hypothesis-scroll {
-  overflow:auto;  
+  overflow:auto;
   width: 1120px;
 }
 .micButton {
@@ -5655,7 +5655,7 @@ table.table,
 }
 .clickable {
     cursor: pointer;
-} 
+}
 
 .caret-down {
   width: 1em;
@@ -5732,4 +5732,26 @@ table.table,
 .nav-label{
   position: relative;
   left: 8px;
+}
+
+
+.base--button_fill {
+  background-color: #315d80;
+  border-color: #315d80;
+  color: white;
+  font-weight: 300;
+  padding: 0.4em 2em;
+  border-radius: 10rem;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+}
+.base--button_fill:visited {
+  background-color: #315d80;
+  border-color: #315d80;
+  color: white;
+}
+.base--button_fill:hover, .base--button_fill:focus {
+  background-color: #264a60;
+  border-color: #264a60;
+  color: white;
 }
