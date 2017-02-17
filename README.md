@@ -4,7 +4,7 @@
   You can translate either by letting the service identify the source language or by selecting a source language and then by selecting a target language, and a business domain. Domain translation is linguistically targeted these business domains:
   * *The News domain* - targeted at news articles and transcripts, it translates English to and from Arabic, Brazilian Portuguese, French, Italian, or Spanish. It also translates Spanish to and from French.
   * *The Conversational domain* - targeted at conversational colloquialisms, it translates English to and from Arabic, Brazilian Portuguese, French, Italian, or Spanish.
-  * *The Patent domain* - targeted at technical and legal terminology, it translates Brazilian Portuguese, Chinese, Korean, or Spanish to English.
+  * *The Patent domain* - targeted at technical and legal terminology, it translates Brazilian Portuguese, Chinese, or Spanish to English.
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
@@ -135,4 +135,4 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 [service_url]: http://www.ibm.com/watson/developercloud/language-translator.html
 [getting_started]: https://www.youtube.com/watch?v=X95CMuQys-g
 [sign_up]: https://console.ng.bluemix.net/registration/
-[docs]: http://www.ibm.com/watson/developercloud/doc/language-translator
+[docs]: http://www.ibm.com/watson/developercloud/doc/language-translator/index.html
