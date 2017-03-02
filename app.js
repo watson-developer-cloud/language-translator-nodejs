@@ -38,7 +38,9 @@ var translator = new LanguageTranslatorV2({
 
 // render index page
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', {
+    bluemixAnalytics: process.env.BLUEMIX_ANALYTICS
+  });
 });
 
 app.get('/api/models', function(req, res, next) {
