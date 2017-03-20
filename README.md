@@ -47,7 +47,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
     $ cf push
     ```
 
-  For more details about developing applications that use Watson Developer Cloud services in Bluemix, see [Getting started with Watson Developer Cloud and Bluemix][getting_started].
+  For details about developing applications that use Watson Developer Cloud services in Bluemix, see [Service credentials for Watson services][getting_started].
 
 
 ## Running locally
@@ -133,6 +133,6 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 [cloud_foundry]: https://github.com/cloudfoundry/cli
 [service_url]: http://www.ibm.com/watson/developercloud/language-translator.html
-[getting_started]: https://www.youtube.com/watch?v=X95CMuQys-g
+[getting_started]: https://www.ibm.com/watson/developercloud/doc/common/getting-started-credentials.html
 [sign_up]: https://console.ng.bluemix.net/registration/
 [docs]: http://www.ibm.com/watson/developercloud/doc/language-translator/index.html
