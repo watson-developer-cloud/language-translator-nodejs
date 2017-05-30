@@ -38,7 +38,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 1. Create the Language Translator service in Bluemix.
 
     ```sh
-    $ cf create-service language_translator standard language-translator-service
+    $ cf create-service language_translator lite language-translator-service
     ```
 
 1. Push your app to make it live:
@@ -76,7 +76,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
                 }
                 "label": "language-translator",
                 "name": "language-translator-service",
-                "plan": "standard",
+                "plan": "lite",
                 "tags": [
                   ...
                 ]
