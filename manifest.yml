@@ -1,7 +1,7 @@
 declared-services:
   language-translator-service:
     label: language_translator
-    plan: standard
+    plan: lite
 applications:
 - services:
   - language-translator-service
