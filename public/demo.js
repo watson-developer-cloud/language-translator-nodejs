@@ -353,10 +353,24 @@ $(document).ready(function () {
   function getModelId(pageDomain, source, target) {
     var modelId = '';
 
+    // Preferred: search for an exact lang/locale match (e.g. en-US to es-LA)
     for (var y in modelList) {
       if (modelList[y].hasOwnProperty('domain')) {
         var modelListDomain = modelList[y].domain.toString();
         if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[y].source && target === modelList[y].target) {
+          modelId = modelList[y].model_id;
+          return modelId;
+        }
+      }
+    }
+    
+    // Fallback: search for a language-only match (e.g. en to es)
+    source = source.split('-').shift(); // split around '-' to handle cases like arz where the language part is actually 3 letters
+    target = target.split('-').shift();
+    for (var y in modelList) {
+      if (modelList[y].hasOwnProperty('domain')) {
+        var modelListDomain = modelList[y].domain.toString();
+        if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[y].source.split('-').shift() && target === modelList[y].target.split('-').shift()) {
           modelId = modelList[y].model_id;
           return modelId;
         }
