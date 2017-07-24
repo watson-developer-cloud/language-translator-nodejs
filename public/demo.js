@@ -256,16 +256,16 @@ $(document).ready(function () {
   // Fill in dropdown menu
   function fillInDropdown(ulName) {
     $.each(sourceList, function (index, value) {
-       // Look for source value in drop down list
-       var search = ($('#' + ulName + ' li a').filter(function() {
+      // Look for source value in drop down list
+      var search = ($('#' + ulName + ' li a').filter(function() {
          return ($(this).text() == value.source);
-       }));
-       if (search.length == 0) { 
-         $('#' + ulName).append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.source + '</a></li>');
-       }
-       else {
-         console.log(value.source,'source lang already exist in li list');
-       }
+      }));
+      if (search.length == 0) { 
+        $('#' + ulName).append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.source + '</a></li>');
+      }
+      else {
+        console.log(value.source,'source lang already exist in li list');
+      }
     });
   }
 
@@ -280,7 +280,7 @@ $(document).ready(function () {
           return ($(this).text() == value.target);
         }));
         if (search.length == 0) { 
-           $('#ulTargetLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.target + '</a></li>');
+          $('#ulTargetLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.target + '</a></li>');
         }
         else {
           console.log(value.target,'target lang already exist in li list');
@@ -374,9 +374,9 @@ $(document).ready(function () {
     // Fallback: search for a language-only match (e.g. en to es)
     source = source.split('-').shift(); // split around '-' to handle cases like arz where the language part is actually 3 letters
     target = target.split('-').shift();
-    for (var y in modelList) {
+    for (y in modelList) {
       if (modelList[y].hasOwnProperty('domain')) {
-        var modelListDomain = modelList[y].domain.toString();
+        modelListDomain = modelList[y].domain.toString();
         if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[y].source.split('-').shift() && target === modelList[y].target.split('-').shift()) {
           modelId = modelList[y].model_id;
           return modelId;
