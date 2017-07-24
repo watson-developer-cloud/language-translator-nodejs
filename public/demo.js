@@ -258,7 +258,7 @@ $(document).ready(function () {
     $.each(sourceList, function (index, value) {
       // Look for source value in drop down list
       var search = ($('#' + ulName + ' li a').filter(function() {
-         return ($(this).text() == value.source);
+        return ($(this).text() == value.source);
       }));
       if (search.length == 0) { 
         $('#' + ulName).append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.source + '</a></li>');
