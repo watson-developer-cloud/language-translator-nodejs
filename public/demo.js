@@ -80,7 +80,7 @@ $(document).ready(function () {
         async: true
       })
         .done(function (data) {
-          //console.log(data);
+          //console.log("demo.js identifiable",data);
           langAbbrevList = data.languages;
           // select news option in domain and update dropdown with language selections
           $('input:radio[name=group1]:nth(1)').prop('checked', true).trigger('click');
@@ -256,11 +256,16 @@ $(document).ready(function () {
   // Fill in dropdown menu
   function fillInDropdown(ulName) {
     $.each(sourceList, function (index, value) {
-      if ($('#' + ulName + ' li:contains("' + value.source + '")').length) {
-        console.log('source lang already exist in li list');
-      } else {
-        $('#' + ulName).append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.source + '</a></li>');
-      }
+       // Look for source value in drop down list
+       var search = ($('#' + ulName + ' li a').filter(function() {
+         return ($(this).text() == value.source);
+       }));
+       if (search.length == 0) { 
+         $('#' + ulName).append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.source + '</a></li>');
+       }
+       else {
+         console.log(value.source,'source lang already exist in li list');
+       }
     });
   }
 
@@ -270,13 +275,15 @@ $(document).ready(function () {
 
     // Update output dropdown menu with target language
     $.each(sourceList, function (index, value) {
-      //console.log(value.source + ' source value ' +  $("#dropdownMenuInput").text());
       if (value.source == $.trim($('#dropdownMenuInput').text())) {
-        if (!($('#ulTargetLang li:contains(\'' + value.target + '\')').length)) {
-          //console.log('source lang already exist in li list');
-          //}
-          //else {
-          $('#ulTargetLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.target + '</a></li>');
+        var search = ($('#ulTargetLang li a').filter(function() {
+          return ($(this).text() == value.target);
+        }));
+        if (search.length == 0) { 
+           $('#ulTargetLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.target + '</a></li>');
+        }
+        else {
+          console.log(value.target,'target lang already exist in li list');
         }
       }
     });
