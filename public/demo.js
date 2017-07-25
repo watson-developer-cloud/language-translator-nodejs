@@ -256,11 +256,16 @@ $(document).ready(function () {
   // Fill in dropdown menu
   function fillInDropdown(ulName) {
     $.each(sourceList, function (index, value) {
+      var exists = false;
       // Look for source value in drop down list
-      var search = ($('#' + ulName + ' li a').filter(function() {
-        return ($(this).text() == value.source);
-      }));
-      if (search.length == 0) { 
+      $('#' + ulName).find('a').each(function() {
+         if ($(this).text() == value.source) { 
+           exists = true;
+           return false;
+         }
+      });
+      // Create new list item if source value was not in select list
+      if (!exists) { 
         $('#' + ulName).append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.source + '</a></li>');
       }
       else {
@@ -374,11 +379,11 @@ $(document).ready(function () {
     // Fallback: search for a language-only match (e.g. en to es)
     source = source.split('-').shift(); // split around '-' to handle cases like arz where the language part is actually 3 letters
     target = target.split('-').shift();
-    for (y in modelList) {
-      if (modelList[y].hasOwnProperty('domain')) {
-        modelListDomain = modelList[y].domain.toString();
-        if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[y].source.split('-').shift() && target === modelList[y].target.split('-').shift()) {
-          modelId = modelList[y].model_id;
+    for (var y2 in modelList) {
+      if (modelList[y2].hasOwnProperty('domain')) {
+        var modelListDomain2 = modelList[y2].domain.toString();
+        if ((modelListDomain2.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[y2].source.split('-').shift() && target === modelList[y2].target.split('-').shift()) {
+          modelId = modelList[y2].model_id;
           return modelId;
         }
       }
