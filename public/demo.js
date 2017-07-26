@@ -361,6 +361,12 @@ $(document).ready(function () {
     }
   } // get Translation end here
 
+  // accepts a lang or locale (e.g. en-US) and returns the lang (e.g. en)
+  function getLang(locale){
+    // split/shift rather than substr to handle cases like arz where the language part is actually 3 letters
+    return locale.split('-').shift().toLowerCase();
+  }
+
   // Get model_id from domain, source , target
   function getModelId(pageDomain, source, target) {
     var modelId = '';
@@ -375,14 +381,14 @@ $(document).ready(function () {
         }
       }
     }
-    
+
     // Fallback: search for a language-only match (e.g. en to es)
-    source = source.split('-').shift(); // split around '-' to handle cases like arz where the language part is actually 3 letters
-    target = target.split('-').shift();
+    source = getLang(source);
+    target = getLang(target);
     for (var y2 in modelList) {
       if (modelList[y2].hasOwnProperty('domain')) {
         var modelListDomain2 = modelList[y2].domain.toString();
-        if ((modelListDomain2.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[y2].source.split('-').shift() && target === modelList[y2].target.split('-').shift()) {
+        if ((modelListDomain2.toLowerCase() === pageDomain.toString().toLowerCase()) && source === getLang(modelList[y2].source) && target === getLang(modelList[y2].target)) {
           modelId = modelList[y2].model_id;
           return modelId;
         }
