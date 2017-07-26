@@ -260,8 +260,8 @@ $(document).ready(function () {
       // Look for source value in drop down list
       $('#' + ulName).find('a').each(function() {
         if ($(this).text() == value.source) { 
-           exists = true;
-           return false;
+          exists = true;
+          return false;
         }
       });
       // Create new list item if source value was not in select list
