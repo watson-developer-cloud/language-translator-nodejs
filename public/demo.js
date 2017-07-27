@@ -261,7 +261,7 @@ $(document).ready(function () {
       $('#' + ulName).find('a').each(function() {
         if ($(this).text() == value.source) { 
           exists = true;
-          return false;
+          return false;  // exit the loop when match is found
         }
       });
       // Create new list item if source value was not in select list
@@ -275,16 +275,23 @@ $(document).ready(function () {
   }
 
   function updateOutputDropdownMenu() {
+    var exists;
     $('#ulTargetLang').html('');
     $('#dropdownMenuOutput').html('').html('Choose Language <span class="caret"></span>');
 
     // Update output dropdown menu with target language
     $.each(sourceList, function (index, value) {
       if (value.source == $.trim($('#dropdownMenuInput').text())) {
-        var search = ($('#ulTargetLang li a').filter(function() {
-          return ($(this).text() == value.target);
-        }));
-        if (search.length == 0) { 
+        exists = false;
+        // Look for target value in drop down list
+        $('#ulTargetLang').find('a').each(function() {
+          if ($(this).text() == value.target) { 
+            exists = true;
+            return false;  // exit the loop when match is found
+          }
+        });
+        // Create new list item if source value was not in select list
+        if (!exists) { 
           $('#ulTargetLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.target + '</a></li>');
         }
         else {
