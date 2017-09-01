@@ -23,7 +23,6 @@
     <meta name="og:description" content="The IBM Watson Language Translator service converts text input in one language into a destination language for the end user using background from domain-specific models. Translation is available among Arabic, Chinese, English, French, Portuguese, German, and Spanish (some languages may not be available for all domains).">
     <link href="css/watson-bootstrap-style.css" rel="stylesheet">
     <link href="css/browser-compatibility.css" rel="stylesheet">
-    <%- bluemixAnalytics %>
 </head>
 <body>
     <!-- top nav section -->
@@ -32,11 +31,11 @@
             <div class="container">
                 <!-- IBM Watson Logo -->
                 <div class="navbar-header">
-                    <a class="navbar-brand no-underline" href="http://www.ibm.com/watson/developercloud/"><span class="thin-branding">IBM</span> Watson Developer Cloud</a>
+                    <a class="navbar-brand no-underline" href="https://www.ibm.com/watson/developer/"><span class="thin-branding">IBM</span> Watson Developer Cloud</a>
                 </div>
                 <div class="float-right">
                     <ul class="nav navbar-nav">
-                        <li><a href="http://www.ibm.com/watson/developercloud/services-catalog.html" class="">Services</a></li>
+                        <li><a href="https://www.ibm.com/watson/products-services/" class="">Services</a></li>
                         <li><a href="http://www.ibm.com/watson/developercloud/doc/" class="no-underline">Docs</a></li>
                         <li><a href="http://www.ibm.com/watson/developercloud/starter-kits.html" class="no-underline">Starter Kits</a></li>
                         <li><a href="https://developer.ibm.com/watson/" class="no-underline">Community</a></li>
@@ -61,7 +60,7 @@
                 <p><img src="images/link.svg" class="glyph"><strong>Resources:</strong></br>
                     <div class="resources">
                         <a href="http://www.ibm.com/watson/developercloud/language-translator/api/v2/">API Overview</a>
-                        <a href="http://www.ibm.com/watson/developercloud/doc/language-translator/index.html">Documentation</a>
+                        <a href="https://console.bluemix.net/docs/services/language-translator/getting-started.html">Documentation</a>
                         <a href="https://github.com/watson-developer-cloud/language-translator-nodejs">Fork on Github</a>
                         <a class="base--button base--button_fill" href="https://console.ng.bluemix.net/registration/?target=/catalog/services/language-translator/">Start free in Bluemix</a>
                     </div>
@@ -223,6 +222,9 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="demo.js"></script>
+        <% if (bluemixAnalytics) { %>
+          <script type="text/javascript" src="js/analytics.js"></script>
+        <% } %>
 </body>
 
 </html>
