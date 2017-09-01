@@ -18,7 +18,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 1. Edit the `manifest.yml` file and change `<application-name>` to something unique. The name you use determines the URL of your application. For example, `<application-name>.mybluemix.net`.
 
-    ```
+    ```yaml
     applications:
     - services:
       - language-translator-service
@@ -30,83 +30,59 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 1. Connect to Bluemix with the command line tool.
 
-    ```sh
-    $ cf api https://api.ng.bluemix.net
-    $ cf login -u <your user ID>
-    ```
+  ```sh
+  cf api https://api.ng.bluemix.net
+  cf login
+  ```
 
 1. Create the Language Translator service in Bluemix.
 
     ```sh
-    $ cf create-service language_translator lite language-translator-service
+    cf create-service language_translator lite language-translator-service
+    cf create-service-key language-translator-service myKey
+    cf service-key language-translator-service myKey
     ```
 
-1. Push your app to make it live:
+1. Create a `.env` file in the root directory by copying the sample `.env.example` file using the following command:
 
-    ```sh
-    $ cf push
-    ```
+  ```none
+  cp .env.example .env
+  ```
+  You will update the `.env` with the information you retrieved in steps 5.
 
-  For details about developing applications that use Watson Developer Cloud services in Bluemix, see [Service credentials for Watson services][getting_started].
+  The `.env` file will look something like the following:
 
+  ```none
+  SPEECH_TO_TEXT_USERNAME=<username>
+  SPEECH_TO_TEXT_PASSWORD=<password>
+  ```
 
-## Running locally
-1. Download and install [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/).
+1. Install the dependencies you application need:
 
-1. Configure the code to connect to your service:
+  ```none
+  npm install
+  ```
 
-    1. Copy the credentials from your `language-translator-service` service in Bluemix. Run the following command:
+1. Start the application locally:
 
-        ```sh
-        $ cf env <application-name>
-        ```
-
-        Example output:
-
-        ```sh
-        System-Provided:
-        {
-          "VCAP_SERVICES": {
-            "language_translator": [
-              {
-                "credentials": {
-                  "password": "<password>",
-                  "url": "<url>",
-                  "username": "<username>"
-                }
-                "label": "language-translator",
-                "name": "language-translator-service",
-                "plan": "lite",
-                "tags": [
-                  ...
-                ]
-              }
-            ]
-          }
-        }
-        ```
-
-    1. Copy `username`, `password`, and `url` from the credentials.
-    1. Open the `app.js` file and paste the username, password, and url credentials for the service.
-    1. Save the `creds.js` file.
-
-
-1. Install the Language Translator Node.js package:
-    1. Change to the new directory that contains the project.
-    2. Run the following command:
-
-    ```node
-    $ npm install
-    ```
-
-1. Run the following command to start the application:
-
-    ```node
-    node app.js
-    ```
+  ```none
+  npm start
+  ```
 
 1. Point your browser to [http://localhost:3000](http://localhost:3000).
 
+1. **Optional:** Push the application to Bluemix:
+
+  ```none
+  cf push
+  ```
+
+After completing the steps above, you are ready to test your application. Start a browser and enter the URL of your application.
+
+            <your application name>.mybluemix.net
+
+
+For more details about developing applications that use Watson Developer Cloud services in Bluemix, see [Getting started with Watson Developer Cloud and Bluemix][getting_started].
 
 ## Troubleshooting
 
@@ -120,8 +96,8 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 ## License
 
-  This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).  
-  This sample code is using jQuery which is licensed under MIT.  
+  This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
+  This sample code is using jQuery which is licensed under MIT.
   This sample code is using bootstrap which is licensed under MIT.
 
 ## Contributing
@@ -132,7 +108,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
 
 [cloud_foundry]: https://github.com/cloudfoundry/cli
-[service_url]: http://www.ibm.com/watson/developercloud/language-translator.html
-[getting_started]: https://www.ibm.com/watson/developercloud/doc/common/getting-started-credentials.html
+[service_url]: https://www.ibm.com/watson/services/language-translator/
+[getting_started]: https://console.bluemix.net/docs/services/watson/getting-started-credentials.html#service-credentials-for-watson-services
 [sign_up]: https://console.ng.bluemix.net/registration/
-[docs]: http://www.ibm.com/watson/developercloud/doc/language-translator/index.html
+[docs]: https://console.bluemix.net/docs/services/language-translator/getting-started.html

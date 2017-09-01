@@ -39,7 +39,7 @@ var translator = new LanguageTranslatorV2({
 // render index page
 app.get('/', function(req, res) {
   res.render('index', {
-    bluemixAnalytics: process.env.BLUEMIX_ANALYTICS
+    bluemixAnalytics: !!process.env.BLUEMIX_ANALYTICS,
   });
 });
 
@@ -63,7 +63,7 @@ app.post('/api/identify', function(req, res, next) {
     if (err)
       return next(err);
     else
-        res.json(models);
+      res.json(models);
   });
 });
 
