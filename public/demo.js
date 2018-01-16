@@ -22,6 +22,7 @@ $(document).ready(function () {
   var sourceList = [];
   var sourceLangSelect = 'Choose Language';
   var langAbbrevList = [];
+  var nmtValue  = '2017-07-01';
 
   // Update input-output dropdown based on selected domain
   $('input:radio[name=group1]').click(function () {
@@ -67,6 +68,9 @@ $(document).ready(function () {
   $.ajax({
     type: 'GET',
     url: '/api/models',
+    headers: {
+      'X-Watson-Technology-Preview': nmtValue
+    },
     async: true
   })
     .done(function (data) {
@@ -77,6 +81,9 @@ $(document).ready(function () {
       $.ajax({
         type: 'GET',
         url: '/api/identifiable_languages',
+        headers: {
+          'X-Watson-Technology-Preview': nmtValue
+        },
         async: true
       })
         .done(function (data) {
@@ -167,6 +174,9 @@ $(document).ready(function () {
       var restAPICall = {
         type: 'POST',
         url: '/api/identify',
+        headers: {
+          'X-Watson-Technology-Preview': nmtValue
+        },
         data: {
           textData: $('#home textarea').val()
         },
@@ -346,7 +356,8 @@ $(document).ready(function () {
         data: callData,
         dataType: 'json',
         headers: {
-          'X-WDC-PL-OPT-OUT': $('input:radio[name=serRadio]:radio:checked').val()
+          'X-WDC-PL-OPT-OUT': $('input:radio[name=serRadio]:radio:checked').val(),
+          'X-Watson-Technology-Preview': nmtValue
         },
         async: true
       };
