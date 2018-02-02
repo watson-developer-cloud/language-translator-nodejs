@@ -38,13 +38,10 @@ var translator = new LanguageTranslatorV2({
 
 // render index page
 app.get('/', function(req, res) {
-  // If show_header is found in the query string and is set to 0 or false,
-  // the header will be hidden. 
-  var showHeader = (req.query.show_header && (
-    req.query.show_header == '0' || req.query.show_header == 'false'))
-    ? false : true;
+  // If hide_header is found in the query string and is set to 1 or true,
+  // the header should be hidden. Default is to show header
   res.render('index', {
-    showHeader: showHeader,
+    hideHeader: !!(req.query.hide_header == 'true' || req.query.hide_header == '1'),
     bluemixAnalytics: !!process.env.BLUEMIX_ANALYTICS,
   });
 });
