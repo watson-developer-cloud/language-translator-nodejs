@@ -38,7 +38,10 @@ var translator = new LanguageTranslatorV2({
 
 // render index page
 app.get('/', function(req, res) {
+  // If hide_header is found in the query string and is set to 1 or true,
+  // the header should be hidden. Default is to show header
   res.render('index', {
+    hideHeader: !!(req.query.hide_header == 'true' || req.query.hide_header == '1'),
     bluemixAnalytics: !!process.env.BLUEMIX_ANALYTICS,
   });
 });
