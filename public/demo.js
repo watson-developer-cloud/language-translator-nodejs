@@ -233,6 +233,9 @@ $(document).ready(function () {
     if (langAbbrev === 'arz') {
       return 'Egyptian Arabic';
     }
+    if (langAbbrev === 'zht') {
+      return 'Traditional Chinese';
+    }
     var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
       //console.log ('length ' + langAbbrev.length);

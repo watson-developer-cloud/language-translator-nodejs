@@ -33,7 +33,10 @@ var translator = new LanguageTranslatorV2({
   // After that, the SDK will fall back to the ibm-cloud-provided VCAP_SERVICES environment property
   // username: '<username>',
   // password: '<password>'
-  url: 'https://gateway.watsonplatform.net/language-translator/api'
+  url: 'https://gateway.watsonplatform.net/language-translator/api',
+  headers: { 
+    'X-Watson-Technology-Preview': '2017-07-01'
+  }
 });
 
 // render index page
