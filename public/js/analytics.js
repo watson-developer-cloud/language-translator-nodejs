@@ -12,9 +12,9 @@ function loadAnalytics() {
   meta.setAttribute('value', SERVICE_NAME);
   document.head.appendChild(meta);
 
-  var bluemixAnalyticsScript = document.createElement('script');
-  bluemixAnalyticsScript.src = 'https://console.bluemix.net/analytics/build/bluemix-analytics.min.js';
-  document.head.appendChild(bluemixAnalyticsScript);
+  var analyticsScript = document.createElement('script');
+  analyticsScript.src = 'https://console.bluemix.net/analytics/build/bluemix-analytics.min.js';
+  document.head.appendChild(analyticsScript);
 
   // ibm.com Analytics
   window.digitalData = {
