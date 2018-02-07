@@ -35,7 +35,7 @@ var translator = new LanguageTranslatorV2({
   // password: '<password>'
   url: 'https://gateway.watsonplatform.net/language-translator/api',
   headers: { 
-     'X-Watson-Technology-Preview': '2017-07-01'
+    'X-Watson-Technology-Preview': '2017-07-01'
   }
 });
 
