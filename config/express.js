@@ -26,7 +26,7 @@ module.exports = function (app) {
   app.set('view engine', 'ejs');
   app.set('views', __dirname + '/../views');
 
-  // Only loaded when running in Bluemix
+  // Only loaded when running in the IBM Cloud
   if (process.env.VCAP_APPLICATION) {
     require('./security')(app);
   }

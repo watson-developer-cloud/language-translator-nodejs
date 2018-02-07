@@ -6,13 +6,13 @@
   * *The Conversational domain* - targeted at conversational colloquialisms, it translates English to and from Arabic, Brazilian Portuguese, French, Italian, or Spanish.
   * *The Patent domain* - targeted at technical and legal terminology, it translates Brazilian Portuguese, Chinese, or Spanish to English.
 
-Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
+Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on IBM Cloud.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/language-translator-nodejs)
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/language-translator-nodejs)
 
 ## Getting started
 
-1. You need a Bluemix account. If you don't have one, [sign up][sign_up]. Experimental Watson Services are free to use.
+1. You need an IBM Cloud account. If you don't have one, [sign up][sign_up]. Experimental Watson Services are free to use.
 
 1. Download and install the [Cloud-foundry CLI][cloud_foundry] tool if you haven't already.
 
@@ -28,14 +28,14 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
       memory: 128M
     ```
 
-1. Connect to Bluemix with the command line tool.
+1. Connect to IBM Clod with the command line tool.
 
   ```sh
   cf api https://api.ng.bluemix.net
   cf login
   ```
 
-1. Create the Language Translator service in Bluemix.
+1. Create the Language Translator service in the IBM Cloud.
 
     ```sh
     cf create-service language_translator lite language-translator-service
@@ -53,8 +53,9 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   The `.env` file will look something like the following:
 
   ```none
-  SPEECH_TO_TEXT_USERNAME=<username>
-  SPEECH_TO_TEXT_PASSWORD=<password>
+  LANGUAGE_TRANSLATOR_USERNAME=<username>
+  LANGUAGE_TRANSLATOR_PASSWORD=<password>
+  LANGUAGE_TRANSLATOR_URL=<url>
   ```
 
 1. Install the dependencies you application need:
@@ -71,7 +72,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 1. Point your browser to [http://localhost:3000](http://localhost:3000).
 
-1. **Optional:** Push the application to Bluemix:
+1. **Optional:** Push the application to IBM Cloud:
 
   ```none
   cf push
@@ -82,11 +83,11 @@ After completing the steps above, you are ready to test your application. Start 
             <your application name>.mybluemix.net
 
 
-For more details about developing applications that use Watson Developer Cloud services in Bluemix, see [Getting started with Watson Developer Cloud and Bluemix][getting_started].
+For more details about developing applications that use Watson Developer Cloud services in the IBM Cloud, see [Getting started with Watson Developer Cloud and IBM Cloud][getting_started].
 
 ## Troubleshooting
 
-* The main source of troubleshooting and recovery information is the Bluemix log. To view the log, run the following command:
+* The main source of troubleshooting and recovery information is the IBM Cloud log. To view the log, run the following command:
 
   ```sh
   $ cf logs <application-name> --recent
@@ -110,5 +111,5 @@ For more details about developing applications that use Watson Developer Cloud s
 [cloud_foundry]: https://github.com/cloudfoundry/cli
 [service_url]: https://www.ibm.com/watson/services/language-translator/
 [getting_started]: https://console.bluemix.net/docs/services/watson/getting-started-credentials.html#service-credentials-for-watson-services
-[sign_up]: https://console.ng.bluemix.net/registration/
+[sign_up]: https://console.bluemix.net/registration/
 [docs]: https://console.bluemix.net/docs/services/language-translator/getting-started.html

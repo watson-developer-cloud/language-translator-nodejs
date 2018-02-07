@@ -30,7 +30,7 @@ require('./config/express')(app);
 
 var translator = new LanguageTranslatorV2({
   // If unspecified here, the LANGUAGE_TRANSLATOR_USERNAME and LANGUAGE_TRANSLATOR_PASSWORD environment properties will be checked
-  // After that, the SDK will fall back to the bluemix-provided VCAP_SERVICES environment property
+  // After that, the SDK will fall back to the ibm-cloud-provided VCAP_SERVICES environment property
   // username: '<username>',
   // password: '<password>'
   url: 'https://gateway.watsonplatform.net/language-translator/api'
@@ -42,13 +42,13 @@ app.get('/', function(req, res) {
   // the header should be hidden. Default is to show header
   res.render('index', {
     hideHeader: !!(req.query.hide_header == 'true' || req.query.hide_header == '1'),
-    bluemixAnalytics: !!process.env.BLUEMIX_ANALYTICS,
+    analytics: !!process.env.BLUEMIX_ANALYTICS,
   });
 });
 
 app.get('/api/models', function(req, res, next) {
   console.log('/v2/models');
-  translator.getModels({}, function(err, models) {
+  translator.listModels({}, function(err, models) {
     if (err)
       return next(err);
     else
@@ -72,7 +72,7 @@ app.post('/api/identify', function(req, res, next) {
 
 app.get('/api/identifiable_languages', function(req, res, next) {
   console.log('/v2/identifiable_languages');
-  translator.getIdentifiableLanguages({}, function(err, models) {
+  translator.listIdentifiableLanguages({}, function(err, models) {
     if (err)
       return next(err);
     else
