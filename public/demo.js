@@ -178,7 +178,7 @@ $(document).ready(function () {
           'X-Watson-Technology-Preview': nmtValue
         },
         data: {
-          textData: $('#home textarea').val()
+          text: $('#home textarea').val()
         },
         async: true
       };
@@ -272,13 +272,13 @@ $(document).ready(function () {
       var exists = false;
       // Look for source value in drop down list
       $('#' + ulName).find('a').each(function() {
-        if ($(this).text() == value.source) { 
+        if ($(this).text() == value.source) {
           exists = true;
           return false;  // exit the loop when match is found
         }
       });
       // Create new list item if source value was not in select list
-      if (!exists) { 
+      if (!exists) {
         $('#' + ulName).append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.source + '</a></li>');
       }
       else {
@@ -298,13 +298,13 @@ $(document).ready(function () {
         exists = false;
         // Look for target value in drop down list
         $('#ulTargetLang').find('a').each(function() {
-          if ($(this).text() == value.target) { 
+          if ($(this).text() == value.target) {
             exists = true;
             return false;  // exit the loop when match is found
           }
         });
         // Create new list item if source value was not in select list
-        if (!exists) { 
+        if (!exists) {
           $('#ulTargetLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >' + value.target + '</a></li>');
         }
         else {

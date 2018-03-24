@@ -16,17 +16,12 @@
 
 'use strict';
 
-require('dotenv').load({silent: true});
-var express  = require('express'),
-  app        = express(),
-  extend     = require('extend'),
-  LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
-
-
+var express = require('express');
+var app = express();
+var LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 
 // Bootstrap application settings
 require('./config/express')(app);
-
 
 var translator = new LanguageTranslatorV2({
   // If unspecified here, the LANGUAGE_TRANSLATOR_USERNAME and LANGUAGE_TRANSLATOR_PASSWORD environment properties will be checked
@@ -34,9 +29,10 @@ var translator = new LanguageTranslatorV2({
   // username: '<username>',
   // password: '<password>'
   url: 'https://gateway.watsonplatform.net/language-translator/api',
-  headers: { 
-    'X-Watson-Technology-Preview': '2017-07-01'
-  }
+  headers: {
+    'X-Watson-Technology-Preview': '2017-07-01',
+    'X-Watson-Learning-Opt-Out': true,
+  },
 });
 
 // render index page
@@ -52,51 +48,35 @@ app.get('/', function(req, res) {
 app.get('/api/models', function(req, res, next) {
   console.log('/v2/models');
   translator.listModels({}, function(err, models) {
-    if (err)
-      return next(err);
-    else
-      res.json(models);
+    if (err) return next(err);
+    else res.json(models);
   });
 });
 
 app.post('/api/identify', function(req, res, next) {
   console.log('/v2/identify');
-  var params = {
-    text: req.body.textData,
-    'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')
-  };
-  translator.identify(params, function(err, models) {
-    if (err)
-      return next(err);
-    else
-      res.json(models);
+  translator.identify(req.body, function(err, models) {
+    if (err) return next(err);
+    else res.json(models);
   });
 });
 
 app.get('/api/identifiable_languages', function(req, res, next) {
   console.log('/v2/identifiable_languages');
   translator.listIdentifiableLanguages({}, function(err, models) {
-    if (err)
-      return next(err);
-    else
-      res.json(models);
+    if (err) return next(err);
+    else res.json(models);
   });
 });
 
-app.post('/api/translate',  function(req, res, next) {
+app.post('/api/translate', function(req, res, next) {
   console.log('/v2/translate');
-  var params = extend({ 'X-WDC-PL-OPT-OUT': req.header('X-WDC-PL-OPT-OUT')}, req.body);
-  translator.translate(params, function(err, models) {
-    if (err)
-      return next(err);
-    else
-      res.json(models);
+  translator.translate(req.body, function(err, models) {
+    if (err) return next(err);
+    else res.json(models);
   });
 });
 
 // express error handler
 require('./config/error-handler')(app);
-
-var port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
-app.listen(port);
-console.log('listening at:', port);
+module.exports = app;
