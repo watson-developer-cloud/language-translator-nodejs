@@ -22,7 +22,7 @@ $(document).ready(function () {
   var sourceList = [];
   var sourceLangSelect = 'Choose Language';
   var langAbbrevList = [];
-  var nmtValue  = '2017-07-01';
+  var nmtValue  = '2018-05-01';
 
   // Update input-output dropdown based on selected domain
   $('input:radio[name=group1]').click(function () {
@@ -41,7 +41,7 @@ $(document).ready(function () {
       var targetVal = '';
       // if model has the domain property then add the language in dropdown list. Otherwise add 'news' domain to JSON model list
       if (!(modelList[y].hasOwnProperty('domain'))) {
-        modelList[y].domain = 'news';
+        modelList[y].domain = 'general';
         //console.log('no domain');
       }
       var modelListDomain = modelList[y].domain.toString();
