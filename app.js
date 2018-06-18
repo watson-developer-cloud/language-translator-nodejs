@@ -18,19 +18,20 @@
 
 var express = require('express');
 var app = express();
-var LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
+var LanguageTranslatorV3 = require('watson-developer-cloud/language-translator/v3');
 
 // Bootstrap application settings
 require('./config/express')(app);
 
-var translator = new LanguageTranslatorV2({
+var translator = new LanguageTranslatorV3({
   // If unspecified here, the LANGUAGE_TRANSLATOR_USERNAME and LANGUAGE_TRANSLATOR_PASSWORD environment properties will be checked
   // After that, the SDK will fall back to the ibm-cloud-provided VCAP_SERVICES environment property
   // username: '<username>',
   // password: '<password>'
   url: 'https://gateway.watsonplatform.net/language-translator/api',
+  version: '2018-05-01',
   headers: {
-    'X-Watson-Technology-Preview': '2017-07-01',
+    'X-Watson-Technology-Preview': '2018-05-01',
     'X-Watson-Learning-Opt-Out': true,
   },
 });
@@ -46,7 +47,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/models', function(req, res, next) {
-  console.log('/v2/models');
+  console.log('/v3/models');
   translator.listModels({}, function(err, models) {
     if (err) return next(err);
     else res.json(models);
@@ -54,7 +55,7 @@ app.get('/api/models', function(req, res, next) {
 });
 
 app.post('/api/identify', function(req, res, next) {
-  console.log('/v2/identify');
+  console.log('/v3/identify');
   translator.identify(req.body, function(err, models) {
     if (err) return next(err);
     else res.json(models);
@@ -62,7 +63,7 @@ app.post('/api/identify', function(req, res, next) {
 });
 
 app.get('/api/identifiable_languages', function(req, res, next) {
-  console.log('/v2/identifiable_languages');
+  console.log('/v3/identifiable_languages');
   translator.listIdentifiableLanguages({}, function(err, models) {
     if (err) return next(err);
     else res.json(models);
@@ -70,7 +71,7 @@ app.get('/api/identifiable_languages', function(req, res, next) {
 });
 
 app.post('/api/translate', function(req, res, next) {
-  console.log('/v2/translate');
+  console.log('/v3/translate');
   translator.translate(req.body, function(err, models) {
     if (err) return next(err);
     else res.json(models);
