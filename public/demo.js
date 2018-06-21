@@ -236,6 +236,9 @@ $(document).ready(function () {
     if (langAbbrev === 'zht') {
       return 'Traditional Chinese';
     }
+    if (langAbbrev === 'ca') {
+      return 'Catalan';
+    }
     var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
       //console.log ('length ' + langAbbrev.length);
@@ -251,10 +254,13 @@ $(document).ready(function () {
 
   // get abbreviation of language from Name
   function getLanguageCode(langName) {
-    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Egyptian Arabic
+    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Egyptian Arabic and Catalan
     // so it's hard-coded for now
     if (langName === 'Egyptian Arabic') {
       return 'arz';
+    }
+    if (langName === 'Catalan') {
+      return 'ca';
     }
     var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
