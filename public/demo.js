@@ -57,6 +57,12 @@ $(document).ready(function () {
       }
     }
 
+    // Sort by source then target ,so source languages are sorted in dropdown 
+    sourceList.sort(function(a,b) {
+      return (a.source > b.source) ? 1 : ((b.source > a.source) ? -1 :
+        ( a.target < b.target ? -1 : a.target > b.target ? 1 : 0)); 
+    });
+
     // Update Input Dropdown Menu with Source Language
     $('#ulSourceLang').html('');
     $('#ulSourceLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >Detect Language</a></li>');
@@ -236,6 +242,9 @@ $(document).ready(function () {
     if (langAbbrev === 'zht') {
       return 'Traditional Chinese';
     }
+    if (langAbbrev === 'ca') {
+      return 'Catalan';
+    }
     var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
       //console.log ('length ' + langAbbrev.length);
@@ -251,10 +260,13 @@ $(document).ready(function () {
 
   // get abbreviation of language from Name
   function getLanguageCode(langName) {
-    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Egyptian Arabic
+    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Egyptian Arabic and Catalan
     // so it's hard-coded for now
     if (langName === 'Egyptian Arabic') {
       return 'arz';
+    }
+    if (langName === 'Catalan') {
+      return 'ca';
     }
     var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
