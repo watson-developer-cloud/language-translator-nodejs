@@ -57,6 +57,12 @@ $(document).ready(function () {
       }
     }
 
+    // Sort by source then target ,so source languages are sorted in dropdown 
+    sourceList.sort(function(a,b) {
+      return (a.source > b.source) ? 1 : ((b.source > a.source) ? -1 :
+        ( a.target < b.target ? -1 : a.target > b.target ? 1 : 0)); 
+    });
+
     // Update Input Dropdown Menu with Source Language
     $('#ulSourceLang').html('');
     $('#ulSourceLang').append('<li role="presentation"><a role="menuitem" tabindex="-1" >Detect Language</a></li>');
