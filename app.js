@@ -25,10 +25,10 @@ require('./config/express')(app);
 
 var translator = new LanguageTranslatorV3({
   // If unspecified here, the LANGUAGE_TRANSLATOR_USERNAME and LANGUAGE_TRANSLATOR_PASSWORD environment properties will be checked
+  // LANGUAGE_TRANSLATOR_IAM_APIKEY if apikey is present
   // After that, the SDK will fall back to the ibm-cloud-provided VCAP_SERVICES environment property
   // username: '<username>',
   // password: '<password>'
-  url: 'https://gateway.watsonplatform.net/language-translator/api',
   version: '2018-05-01',
   headers: {
     'X-Watson-Technology-Preview': '2018-05-01',
@@ -42,7 +42,6 @@ app.get('/', function(req, res) {
   // the header should be hidden. Default is to show header
   res.render('index', {
     hideHeader: !!(req.query.hide_header == 'true' || req.query.hide_header == '1'),
-    analytics: !!process.env.BLUEMIX_ANALYTICS,
   });
 });
 

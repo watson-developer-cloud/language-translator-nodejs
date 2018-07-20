@@ -1,4 +1,15 @@
-# Language Translator Node.js [![Build Status](https://travis-ci.org/watson-developer-cloud/language-translator-nodejs.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/language-translator-nodejs)
+<h1 align="center" style="border-bottom: none;">🚀 Language Translator Sample Application</h1>
+<h3 align="center">This Node.js app demonstrates some of the Language Translator service features.
+</h3>
+<p align="center">
+  <a href="http://travis-ci.org/watson-developer-cloud/language-translator-nodejs">
+    <img alt="Travis" src="https://travis-ci.org/watson-developer-cloud/language-translator-nodejs.svg?branch=master">
+  </a>
+  <a href="#badge">
+    <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
+  </a>
+</p>
+</p>
 
   The IBM Watson&trade; [Language Translator][service_url] service provides an Application Programming Interface (API) that lets you identify the language of text, and then use a custom business domain to translate the text from one supported language to another.  
   You can translate either by letting the service identify the source language or by selecting a source language and then by selecting a target language, and a business domain. Domain translation is linguistically targeted these business domains:
@@ -8,108 +19,100 @@
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on IBM Cloud.
 
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/language-translator-nodejs)
 
-## Getting started
+## Prerequisites
 
-1. You need an IBM Cloud account. If you don't have one, [sign up][sign_up]. Experimental Watson Services are free to use.
+1. Sign up for an [IBM Cloud account](https://console.bluemix.net/registration/).
+1. Download the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview).
+1. Create an instance of the Language Translator service and get your credentials:
+    - Go to the [Language Translator](https://console.bluemix.net/catalog/services/language-translator) page in the IBM Cloud Catalog.
+    - Log in to your IBM Cloud account.
+    - Click **Create**.
+    - Click **Show** to view the service credentials.
+    - Copy the `apikey` value, or copy the `username` and `password` values if your service instance doesn't provide an `apikey`.
+    - Copy the `url` value.
 
-1. Download and install the [Cloud-foundry CLI][cloud_foundry] tool if you haven't already.
+## Configuring the application
 
-1. Edit the `manifest.yml` file and change `<application-name>` to something unique. The name you use determines the URL of your application. For example, `<application-name>.mybluemix.net`.
+1. In the application folder, copy the *.env.example* file and create a file called *.env*
 
-    ```yaml
-    applications:
-    - services:
-      - language-translator-service
-      name: <application-name>
-      command: node app.js
-      path: .
-      memory: 128M
+    ```
+    cp .env.example .env
     ```
 
-1. Connect to IBM Clod with the command line tool.
+2. Open the *.env* file and add the service credentials that you obtained in the previous step.
 
-  ```sh
-  cf api https://api.ng.bluemix.net
-  cf login
-  ```
+    Example *.env* file that configures the `apikey` and `url` for a Language Translator service instance hosted in the US East region:
 
-1. Create the Language Translator service in the IBM Cloud.
-
-    ```sh
-    cf create-service language_translator lite language-translator-service
-    cf create-service-key language-translator-service myKey
-    cf service-key language-translator-service myKey
+    ```
+    LANGUAGE_TRANSLATOR_IAM_APIKEY=X4rbi8vwZmKpXfowaS3GAsA7vdy17Qh7km5D6EzKLHL2
+    LANGUAGE_TRANSLATOR_URL=https://gateway-wdc.watsonplatform.net/language-translator/api
     ```
 
-1. Create a `.env` file in the root directory by copying the sample `.env.example` file using the following command:
+    - If your service instance uses `username` and `password` credentials, add the `LANGUAGE_TRANSLATOR_USERNAME` and `LANGUAGE_TRANSLATOR_PASSWORD` variables to the *.env* file.
 
-  ```none
-  cp .env.example .env
-  ```
-  You will update the `.env` with the information you retrieved in steps 5.
+    Example *.env* file that configures the `username`, `password`, and `url` for a Language Translator service instance hosted in the Sydney region:
 
-  The `.env` file will look something like the following:
+    ```
+    LANGUAGE_TRANSLATOR_USERNAME=522be-7b41-ab44-dec3-g1eab2ha73c6
+    LANGUAGE_TRANSLATOR_PASSWORD=A4Z5BdGENrwu8
+    LANGUAGE_TRANSLATOR_URL=https://gateway-syd.watsonplatform.net/language-translator/api
+    ```
+## Running locally
 
-  ```none
-  LANGUAGE_TRANSLATOR_USERNAME=<username>
-  LANGUAGE_TRANSLATOR_PASSWORD=<password>
-  LANGUAGE_TRANSLATOR_URL=<url>
-  ```
+1. Install the dependencies
 
-1. Install the dependencies you application need:
+    ```
+    npm install
+    ```
 
-  ```none
-  npm install
-  ```
+1. Run the application
 
-1. Start the application locally:
+    ```
+    npm start
+    ```
 
-  ```none
-  npm start
-  ```
+1. View the application in a browser at `localhost:3000`
 
-1. Point your browser to [http://localhost:3000](http://localhost:3000).
+## Deploying to IBM Cloud as a Cloud Foundry Application
 
-1. **Optional:** Push the application to IBM Cloud:
+1. Login to IBM Cloud with the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview)
 
-  ```none
-  cf push
-  ```
+    ```
+    ibmcloud login
+    ```
 
-After completing the steps above, you are ready to test your application. Start a browser and enter the URL of your application.
+1. Target a Cloud Foundry organization and space.
 
-            <your application name>.mybluemix.net
+    ```
+    ibmcloud target --cf
+    ```
 
+1. Edit the *manifest.yml* file. Change the **name** field to something unique.  
+  For example, `- name: my-app-name`.
+1. Deploy the application
 
-For more details about developing applications that use Watson Developer Cloud services in the IBM Cloud, see [Getting started with Watson Developer Cloud and IBM Cloud][getting_started].
+    ```
+    ibmcloud app push
+    ```
 
-## Troubleshooting
+1. View the application online at the app URL.  
+For example: https://my-app-name.mybluemix.net
 
-* The main source of troubleshooting and recovery information is the IBM Cloud log. To view the log, run the following command:
-
-  ```sh
-  $ cf logs <application-name> --recent
-  ```
-
-* For more details about the service, see the [documentation][docs] for the Language Translator.
 
 ## License
 
-  This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
-  This sample code is using jQuery which is licensed under MIT.
-  This sample code is using bootstrap which is licensed under MIT.
+This sample code is licensed under Apache 2.0.  
+Full license text is available in [LICENSE](LICENSE).
 
 ## Contributing
 
-  See [CONTRIBUTING](CONTRIBUTING.md).
+See [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Open Source @ IBM
-  Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
 
-[cloud_foundry]: https://github.com/cloudfoundry/cli
+Find more open source projects on the
+[IBM Github Page](http://ibm.github.io/).
+
 [service_url]: https://www.ibm.com/watson/services/language-translator/
-[getting_started]: https://console.bluemix.net/docs/services/watson/getting-started-credentials.html#service-credentials-for-watson-services
-[sign_up]: https://console.bluemix.net/registration/
-[docs]: https://console.bluemix.net/docs/services/language-translator/getting-started.html
+[docs]: https://console.bluemix.net/docs/services/language-translator/index.html#about
