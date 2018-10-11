@@ -33,14 +33,12 @@ module.exports = function(app) {
   // 3. rate limiting
   var translateLimiter = rateLimit({
     windowMs: 60 * 1000,
-    delayMs: 1,
     max: 10
   });
   app.use('/api/translate', translateLimiter);
 
   var identifyLimiter = rateLimit({
     windowMs: 60 * 1000,
-    delayMs: 1,
     max: 10
   });
   app.use('/api/identify', identifyLimiter);
