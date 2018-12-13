@@ -15,7 +15,7 @@
     "watson-developer-cloud": "^3.11.1"
   },
   "engines": {
-    "node": ">=8.0"
+    "node": ">=11.3"
   },
   "repository": {
     "type": "git",
