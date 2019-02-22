@@ -242,9 +242,6 @@ $(document).ready(function () {
     if (langAbbrev === 'zht') {
       return 'Traditional Chinese';
     }
-    if (langAbbrev === 'ca') {
-      return 'Catalan';
-    }
     var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
       //console.log ('length ' + langAbbrev.length);
