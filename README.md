@@ -22,6 +22,8 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 ## Prerequisites
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/watson-developer-cloud/language-translator-nodejs.svg)](https://greenkeeper.io/)
+
 1. Sign up for an [IBM Cloud account](https://console.bluemix.net/registration/).
 1. Download the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview).
 1. Create an instance of the Language Translator service and get your credentials:
