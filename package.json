@@ -7,7 +7,7 @@
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "express-rate-limit": "^3.2.0",
+    "express-rate-limit": "^4.0.0",
     "express-secure-only": "^0.2.1",
     "helmet": "^3.13.0",
     "jade": "~1.11.0",
