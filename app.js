@@ -47,34 +47,30 @@ app.get('/', function(req, res) {
 
 app.get('/api/models', function(req, res, next) {
   console.log('/v3/models');
-  translator.listModels({}, function(err, models) {
-    if (err) return next(err);
-    else res.json(models);
-  });
+  translator.listModels()
+    .then(models => res.json(models))
+    .catch(error => next(error));
 });
 
 app.post('/api/identify', function(req, res, next) {
   console.log('/v3/identify');
-  translator.identify(req.body, function(err, models) {
-    if (err) return next(err);
-    else res.json(models);
-  });
+  translator.identify(req.body)
+    .then(models => res.json(models))
+    .catch(error => next(error));
 });
 
 app.get('/api/identifiable_languages', function(req, res, next) {
   console.log('/v3/identifiable_languages');
-  translator.listIdentifiableLanguages({}, function(err, models) {
-    if (err) return next(err);
-    else res.json(models);
-  });
+  translator.listIdentifiableLanguages(req.body)
+    .then(models => res.json(models))
+    .catch(error => next(error));
 });
 
 app.post('/api/translate', function(req, res, next) {
   console.log('/v3/translate');
-  translator.translate(req.body, function(err, models) {
-    if (err) return next(err);
-    else res.json(models);
-  });
+  translator.translate(req.body)
+    .then(models => res.json(models))
+    .catch(error => next(error));
 });
 
 // express error handler
