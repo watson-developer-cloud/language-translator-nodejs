@@ -2,7 +2,7 @@
 
 require('dotenv').config({silent: true});
 
-if (!process.env.LANGUAGE_TRANSLATOR_USERNAME || !process.env.LANGUAGE_TRANSLATOR_IAM_APIKEY) {
+if (!process.env.LANGUAGE_TRANSLATOR_USERNAME && !process.env.LANGUAGE_TRANSLATOR_IAM_APIKEY) {
   console.log('Skipping unit test because LANGUAGE_TRANSLATOR_USERNAME and LANGUAGE_TRANSLATOR_IAM_APIKEY are null');
   return;
 }
