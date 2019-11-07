@@ -24,14 +24,14 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/watson-developer-cloud/language-translator-nodejs.svg)](https://greenkeeper.io/)
 
-1. Sign up for an [IBM Cloud account](https://console.bluemix.net/registration/).
-1. Download the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview).
+1. Sign up for an [IBM Cloud account](https://cloud.ibm.com/registration/).
+1. Download the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview).
 1. Create an instance of the Language Translator service and get your credentials:
-    - Go to the [Language Translator](https://console.bluemix.net/catalog/services/language-translator) page in the IBM Cloud Catalog.
+    - Go to the [Language Translator](https://cloud.ibm.com/catalog/services/language-translator) page in the IBM Cloud Catalog.
     - Log in to your IBM Cloud account.
     - Click **Create**.
     - Click **Show** to view the service credentials.
-    - Copy the `apikey` value, or copy the `username` and `password` values if your service instance doesn't provide an `apikey`.
+    - Copy the `apikey` value.
     - Copy the `url` value.
 
 ## Configuring the application
@@ -51,15 +51,6 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
     LANGUAGE_TRANSLATOR_URL=https://gateway-wdc.watsonplatform.net/language-translator/api
     ```
 
-    - If your service instance uses `username` and `password` credentials, add the `LANGUAGE_TRANSLATOR_USERNAME` and `LANGUAGE_TRANSLATOR_PASSWORD` variables to the *.env* file.
-
-    Example *.env* file that configures the `username`, `password`, and `url` for a Language Translator service instance hosted in the Sydney region:
-
-    ```
-    LANGUAGE_TRANSLATOR_USERNAME=522be-7b41-ab44-dec3-g1eab2ha73c6
-    LANGUAGE_TRANSLATOR_PASSWORD=A4Z5BdGENrwu8
-    LANGUAGE_TRANSLATOR_URL=https://gateway-syd.watsonplatform.net/language-translator/api
-    ```
 ## Running locally
 
 1. Install the dependencies
@@ -78,7 +69,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 ## Deploying to IBM Cloud as a Cloud Foundry Application
 
-1. Login to IBM Cloud with the [IBM Cloud CLI](https://console.bluemix.net/docs/cli/index.html#overview)
+1. Login to IBM Cloud with the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli/index.html#overview)
 
     ```
     ibmcloud login
@@ -117,4 +108,4 @@ Find more open source projects on the
 [IBM Github Page](http://ibm.github.io/).
 
 [service_url]: https://www.ibm.com/watson/services/language-translator/
-[docs]: https://console.bluemix.net/docs/services/language-translator/index.html#about
+[docs]: https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-about#about
