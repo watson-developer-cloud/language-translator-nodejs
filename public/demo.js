@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /**
  * Copyright 2015 IBM Corp. All Rights Reserved.
  *
@@ -358,7 +359,7 @@ $(document).ready(function () {
 
       // Create call for AJAX and to populate REST API tab
       var callData = {
-        model_id: model_id,
+        modelId: model_id,
         text: textContent
       };
 

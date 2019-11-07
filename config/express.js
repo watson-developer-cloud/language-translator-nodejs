@@ -17,11 +17,11 @@
 'use strict';
 
 // Module dependencies
-var express    = require('express'),
-  morgan       = require('morgan'),
-  bodyParser   = require('body-parser');
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
-module.exports = function (app) {
+module.exports = function(app) {
   // Configure Express
   app.set('view engine', 'ejs');
   app.set('views', __dirname + '/../views');
@@ -38,5 +38,4 @@ module.exports = function (app) {
 
   // Setup static public directory
   app.use(express.static(__dirname + '/../public'));
-
 };

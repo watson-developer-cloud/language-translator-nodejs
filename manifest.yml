@@ -1,10 +1,4 @@
-declared-services:
-  language-translator-service:
-    label: language_translator
-    plan: lite
 applications:
-- services:
-  - language-translator-service
   name: language-translator-demo
   command: npm start
   path: .

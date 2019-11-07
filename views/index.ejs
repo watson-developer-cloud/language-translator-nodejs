@@ -2,229 +2,255 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-    <title>Language Translator</title>
-    <meta name="og:title" content="IBM Watson Language Translator">
-    <meta name="og:description" content="The IBM Watson Language Translator service converts text input in one language into a destination language for the end user using background from domain-specific models. Translation is available among Arabic, Catalan, Chinese (Simplified and Traditional), Czech, Danish, Dutch, English, Finnish, French, German, Hindi, Hungarian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish and Turkish (some languages may not be available for all domains).">
-    <link href="css/watson-bootstrap-style.css" rel="stylesheet">
-    <link href="css/browser-compatibility.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <title>Language Translator</title>
+  <meta name="og:title" content="IBM Watson Language Translator">
+  <meta name="og:description"
+    content="The IBM Watson Language Translator service converts text input in one language into a destination language for the end user using background from domain-specific models. Translation is available among Arabic, Catalan, Chinese (Simplified and Traditional), Czech, Danish, Dutch, English, Finnish, French, German, Hindi, Hungarian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish and Turkish (some languages may not be available for all domains).">
+  <link href="css/watson-bootstrap-style.css" rel="stylesheet">
+  <link href="css/browser-compatibility.css" rel="stylesheet">
 </head>
+
 <body>
-<% if (!hideHeader) { %>
-    <!-- top nav section -->
-    <div class="navbar-wrapper">
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- IBM Watson Logo -->
-                <div class="navbar-header">
-                    <a class="navbar-brand no-underline" href="https://www.ibm.com/watson/developer/"><span class="thin-branding">IBM</span> Watson APIs</a>
-                </div>
-                <!-- .navbar right-->
-            </div>
-            <!-- .container -->
+  <% if (!hideHeader) { %>
+  <!-- top nav section -->
+  <div class="navbar-wrapper">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- IBM Watson Logo -->
+        <div class="navbar-header">
+          <a class="navbar-brand no-underline" href="https://www.ibm.com/watson/developer/"><span
+              class="thin-branding">IBM</span> Watson APIs</a>
         </div>
-        <!-- .navbar -->
+        <!-- .navbar right-->
+      </div>
+      <!-- .container -->
     </div>
-    <!-- .navbar-wrapper -->
-    <!-- Service Description Bar -->
-    <div class="header">
-        <div class="container">
-            <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
-                <img src="images/language-translator.svg" class="service-icon">
-            </div>
-            <div class="col-lg-10 col-md-10 col-sm-12">
-                <h1>Language Translator</h1>
-                <p>The IBM Watson Language Translator service converts text input in one language into a destination language for the end user using background from domain-specific models. Translation is available among Arabic, Catalan, Chinese (Simplified and Traditional), Czech, Danish, Dutch, English, Finnish, French, German, Hindi, Hungarian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish and Turkish (some languages may not be available for all domains).</p>
-                <p><img src="images/link.svg" class="glyph"><strong>Resources:</strong></br>
-                    <div class="resources">
-                        <a href="http://www.ibm.com/watson/developercloud/language-translator/api/v3/">API Overview</a>
-                        <a href="https://console.bluemix.net/docs/services/language-translator/getting-started.html">Documentation</a>
-                        <a href="https://github.com/watson-developer-cloud/language-translator-nodejs">Fork on Github</a>
-                        <a class="base--button base--button_fill" href="https://console.bluemix.net/registration/?target=%2Fcatalog%2Fservices%2Flanguage-translator%3FhideTours%3Dtrue%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409">Start for free in IBM Cloud</a>
-                    </div>
-                    <!-- .resources -->
-                </p>
-            </div>
-            <!-- .col-lg-10 -->
-        </div>
-        <!-- .container -->
-    </div>
-<% } %>
-    <!-- .header -->
-    <!-- Step 2 Section-->
+    <!-- .navbar -->
+  </div>
+  <!-- .navbar-wrapper -->
+  <!-- Service Description Bar -->
+  <div class="header">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12" style="display:none">
-                <h2>Choose a Domain</h2>
-            </div>
-            <!-- .col-lg-12 -->
-            <div class="col-lg-8 col-md-12 col-sm-12" style="display:none">
-                <p class="help-block">Just like a doctor is skilled in medical terms, domain-specific models have been trained in terminology from various fields. They help to provide higher quality translations when used in the right context.</p>
-                <div class="form-group" style="margin-bottom: 1em;">
-                    <input type="radio" name="group1" value="conversational">Conversational
-                    <input type="radio" name="group1" value="general" checked="checked">News
-                    <input type="radio" name="group1" value="patent">Patent
-                </div>
-                <!-- .form-group -->
-            </div>
-            <!-- .col-lg-8 -->
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div>
-                    <h6><strong>Would you like to help make this service better?</strong><br><br>
-         <div class="form-group opt-box-input">
-            <input type="radio" name="serRadio"  id="serRadio" value="0" style="margin-left: 0;" checked>Allow Watson to learn from this session<br><input type="radio" id="serRadio"  name="serRadio" value="1" style="margin-left: 0;">Opt out
+      <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
+        <img src="images/language-translator.svg" class="service-icon">
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-12">
+        <h1>Language Translator</h1>
+        <p>The IBM Watson Language Translator service converts text input in one language into a destination language
+          for the end user using background from domain-specific models. Translation is available among Arabic, Catalan,
+          Chinese (Simplified and Traditional), Czech, Danish, Dutch, English, Finnish, French, German, Hindi,
+          Hungarian, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish and Turkish
+          (some languages may not be available for all domains).</p>
+        <p><img src="images/link.svg" class="glyph"><strong>Resources:</strong></br>
+          <div class="resources">
+            <a href="https://cloud.ibm.com/apidocs/language-translator">API Overview</a>
+            <a
+              href="https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-gettingstarted">Documentation</a>
+            <a href="https://github.com/watson-developer-cloud/language-translator-nodejs">Fork on Github</a>
+            <a class="base--button base--button_fill"
+              href="https:/cloud.ibm.com/registration/?target=%2Fcatalog%2Fservices%2Flanguage-translator%3FhideTours%3Dtrue%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409">Start
+              for free in IBM Cloud</a>
           </div>
-          <div>This system is for demonstration purposes only and is not intended to process Personal Data. No Personal Data is to be entered into this system as it may not have the necessary controls in place to meet the requirements of the General Data Protection Regulation (EU) 2016/679</div></h6>
+          <!-- .resources -->
+        </p>
+      </div>
+      <!-- .col-lg-10 -->
+    </div>
+    <!-- .container -->
+  </div>
+  <% } %>
+  <!-- .header -->
+  <!-- Step 2 Section-->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12" style="display:none">
+        <h2>Choose a Domain</h2>
+      </div>
+      <!-- .col-lg-12 -->
+      <div class="col-lg-8 col-md-12 col-sm-12" style="display:none">
+        <p class="help-block">Just like a doctor is skilled in medical terms, domain-specific models have been trained
+          in terminology from various fields. They help to provide higher quality translations when used in the right
+          context.</p>
+        <div class="form-group" style="margin-bottom: 1em;">
+          <input type="radio" name="group1" value="conversational">Conversational
+          <input type="radio" name="group1" value="general" checked="checked">News
+          <input type="radio" name="group1" value="patent">Patent
+        </div>
+        <!-- .form-group -->
+      </div>
+      <!-- .col-lg-8 -->
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div>
+          <h6><strong>Would you like to help make this service better?</strong><br><br>
+            <div class="form-group opt-box-input">
+              <input type="radio" name="serRadio" id="serRadio" value="0" style="margin-left: 0;" checked>Allow Watson
+              to learn from this session<br><input type="radio" id="serRadio" name="serRadio" value="1"
+                style="margin-left: 0;">Opt out
+            </div>
+            <div>This system is for demonstration purposes only and is not intended to process Personal Data. No
+              Personal Data is to be entered into this system as it may not have the necessary controls in place to meet
+              the requirements of the General Data Protection Regulation (EU) 2016/679</div>
+          </h6>
           <div>
             <h6>
               By using this application, you agree to the&nbsp;
-              <a target="_blank" rel="noreferrer noopener" href="https://watson-developer-cloud.github.io/terms?name=Language%20Translator%20Demo">
-                    Terms of Use
+              <a target="_blank" rel="noreferrer noopener"
+                href="https://watson-developer-cloud.github.io/terms?name=Language%20Translator%20Demo">
+                Terms of Use
               </a>
             </h6>
           </div>
-                </div>
-            </div>
         </div>
-        <hr>
-        <!-- Two columns of inputs -->
-        <!-- First column of inputs -->
+      </div>
+    </div>
+    <hr>
+    <!-- Two columns of inputs -->
+    <!-- First column of inputs -->
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <h2>Translate Text</h2>
+      </div>
+      <!-- .col-lg-12 -->
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <h3>Input</h3>
+        <p class="help-block">Enter or paste text from a passage.</p>
+        <div class="form-group row">
+          <div class="col-lg-12">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuInput"
+                data-toggle="dropdown" aria-expanded="true">
+                Choose Language
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="ulSourceLang">
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- .col-lg-6 -->
+        <!-- Tab panes -->
+        <div class="well">
+          <form class="form-horizontal">
+            <div role="tabpanel">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                    data-toggle="tab">Text</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Rest
+                    API</a></li>
+              </ul>
+              <div class="hr-tab"></div>
+              <fieldset>
+                <div class="form-group row">
+                  <div class="col-lg-12">
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="home">
+                        <textarea></textarea>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="profile">
+                        <textarea disabled="disabled">Example of Rest API</textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- .col-lg-12 -->
+                </div>
+                <!-- .form -->
+              </fieldset>
+          </form>
+        </div>
+        <!-- /.well -->
+      </div>
+      <!-- /.tabpanel -->
+      <div class="form-group row">
+      </div>
+      <!-- /.form -->
+      <div id="resetSpan">
+        <img src="images/reset.svg" class="icon"><a href="/">Reset</a>
+      </div>
+    </div>
+    <!-- /.row -->
+    <!-- Second column of inputs -->
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <h3>Output</h3>
+        <p class="help-block">Copy output from this field to clipboard.</p>
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <h2>Translate Text</h2>
+          <div class="col-lg-12">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuOutput"
+                data-toggle="dropdown" aria-expanded="true">
+                Choose Language
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="ulTargetLang">
+              </ul>
             </div>
-            <!-- .col-lg-12 -->
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <h3>Input</h3>
-                <p class="help-block">Enter or paste text from a passage.</p>
-                <div class="form-group row">
-                    <div class="col-lg-12">
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuInput" data-toggle="dropdown" aria-expanded="true">
-                                Choose Language
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="ulSourceLang">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- .col-lg-6 -->
-                <!-- Tab panes -->
-                <div class="well">
-                    <form class="form-horizontal">
-                        <div role="tabpanel">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Text</a></li>
-                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Rest API</a></li>
-                            </ul>
-                            <div class="hr-tab"></div>
-                            <fieldset>
-                                <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane active" id="home">
-                                                <textarea></textarea>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="profile">
-                                                <textarea disabled="disabled">Example of Rest API</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- .col-lg-12 -->
-                                </div>
-                                <!-- .form -->
-                            </fieldset>
-                    </form>
-                    </div>
-                    <!-- /.well -->
-                </div>
-                <!-- /.tabpanel -->
-                <div class="form-group row">
-                </div>
-                <!-- /.form -->
-                <div id="resetSpan">
-                    <img src="images/reset.svg" class="icon"><a href="/">Reset</a>
-                </div>
-            </div>
-            <!-- /.row -->
-            <!-- Second column of inputs -->
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <h3>Output</h3>
-                    <p class="help-block">Copy output from this field to clipboard.</p>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuOutput" data-toggle="dropdown" aria-expanded="true">
-                                    Choose Language
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="ulTargetLang">
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tab panes -->
-                    <div class="well">
-                        <form class="form-horizontal">
-                            <div role="tabpanel">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#home2" aria-controls="home" role="tab" data-toggle="tab">Text</a></li>
-                                    <li role="presentation"><a href="#profile2" aria-controls="profile" role="tab" data-toggle="tab">JSON</a></li>
-                                </ul>
-                                <div class="hr-tab"></div>
-                                <fieldset>
-                                    <div class="form-group row">
-                                        <div class="col-lg-12">
-                                            <div class="tab-content">
-                                                <div role="tabpanel" class="tab-pane active" id="home2">
-                                                    <textarea></textarea>
-                                                </div>
-                                                <div role="tabpanel" class="tab-pane" id="profile2">
-                                                    <textarea disabled="disabled">Example of JSON</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- .col-lg-12 -->
-                                    </div>
-                                    <!-- .form -->
-                                </fieldset>
-                        </form>
-                        </div>
-                        <!-- /.well -->
-                    </div>
-                    <!-- /.tabpanel -->
-                </div>
-                <!-- /.col-lg-6 -->
-            </div>
-            <!-- /.row -->
+          </div>
         </div>
-        <!-- /.container -->
-        <!-- Place js files at the end of the document -->
-        <script src="js/css_browser_selector.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="demo.js"></script>
-        <script type="text/javascript" src="https://cdn.rawgit.com/watson-developer-cloud/watson-developer-cloud.github.io/master/analytics.js" />
-</body>
+        <!-- Tab panes -->
+        <div class="well">
+          <form class="form-horizontal">
+            <div role="tabpanel">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home2" aria-controls="home" role="tab"
+                    data-toggle="tab">Text</a></li>
+                <li role="presentation"><a href="#profile2" aria-controls="profile" role="tab"
+                    data-toggle="tab">JSON</a></li>
+              </ul>
+              <div class="hr-tab"></div>
+              <fieldset>
+                <div class="form-group row">
+                  <div class="col-lg-12">
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="home2">
+                        <textarea></textarea>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="profile2">
+                        <textarea disabled="disabled">Example of JSON</textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- .col-lg-12 -->
+                </div>
+                <!-- .form -->
+              </fieldset>
+          </form>
+        </div>
+        <!-- /.well -->
+      </div>
+      <!-- /.tabpanel -->
+    </div>
+    <!-- /.col-lg-6 -->
+  </div>
+  <!-- /.row -->
+  </div>
+  <!-- /.container -->
+  <!-- Place js files at the end of the document -->
+  <script src="js/css_browser_selector.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="demo.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.rawgit.com/watson-developer-cloud/watson-developer-cloud.github.io/master/analytics.js" />
+  </body>
 </html>

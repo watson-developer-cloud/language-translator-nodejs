@@ -16,20 +16,21 @@
 
 'use strict';
 
-var express = require('express');
-var app = express();
-var LanguageTranslatorV3 = require('watson-developer-cloud/language-translator/v3');
+const express = require('express');
+const app = express();
+const LanguageTranslatorV3 = require('ibm-watson/language-translator/v3');
+const { IamAuthenticator } = require('ibm-watson/auth');
 
 // Bootstrap application settings
 require('./config/express')(app);
 
-var translator = new LanguageTranslatorV3({
-  // If unspecified here, the LANGUAGE_TRANSLATOR_USERNAME and LANGUAGE_TRANSLATOR_PASSWORD environment properties will be checked
-  // LANGUAGE_TRANSLATOR_IAM_APIKEY if apikey is present
-  // After that, the SDK will fall back to the ibm-cloud-provided VCAP_SERVICES environment property
-  // username: '<username>',
-  // password: '<password>'
-  version: '2018-05-01',
+// Create the service wrapper
+const translator = new LanguageTranslatorV3({
+  version: '2019-10-10',
+  authenticator: new IamAuthenticator({
+    apikey: process.env.LANGUAGE_TRANSLATOR_IAM_APIKEY,
+  }),
+  url: process.env.LANGUAGE_TRANSLATOR_URL,
   headers: {
     'X-Watson-Technology-Preview': '2018-05-01',
     'X-Watson-Learning-Opt-Out': true,
@@ -47,29 +48,33 @@ app.get('/', function(req, res) {
 
 app.get('/api/models', function(req, res, next) {
   console.log('/v3/models');
-  translator.listModels()
-    .then(models => res.json(models))
+  translator
+    .listModels()
+    .then(({ result }) => res.json(result))
     .catch(error => next(error));
 });
 
 app.post('/api/identify', function(req, res, next) {
   console.log('/v3/identify');
-  translator.identify(req.body)
-    .then(models => res.json(models))
+  translator
+    .identify(req.body)
+    .then(({ result }) => res.json(result))
     .catch(error => next(error));
 });
 
 app.get('/api/identifiable_languages', function(req, res, next) {
   console.log('/v3/identifiable_languages');
-  translator.listIdentifiableLanguages(req.body)
-    .then(models => res.json(models))
+  translator
+    .listIdentifiableLanguages(req.body)
+    .then(({ result }) => res.json(result))
     .catch(error => next(error));
 });
 
 app.post('/api/translate', function(req, res, next) {
   console.log('/v3/translate');
-  translator.translate(req.body)
-    .then(models => res.json(models))
+  translator
+    .translate(req.body)
+    .then(({ result }) => res.json(result))
     .catch(error => next(error));
 });
 
