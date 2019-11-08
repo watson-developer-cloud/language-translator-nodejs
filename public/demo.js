@@ -235,10 +235,10 @@ $(document).ready(function () {
 
   // get Language Name from abbreviation
   function getLanguageName(langAbbrev) {
-    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Egyptian Arabic
+    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Indonesian
     // so it's hard-coded for now
-    if (langAbbrev === 'arz') {
-      return 'Egyptian Arabic';
+    if (langAbbrev === 'id') {
+      return 'Indonesian';
     }
     if (langAbbrev === 'zht') {
       return 'Traditional Chinese';
@@ -258,13 +258,10 @@ $(document).ready(function () {
 
   // get abbreviation of language from Name
   function getLanguageCode(langName) {
-    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Egyptian Arabic and Catalan
+    // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Indonesian
     // so it's hard-coded for now
-    if (langName === 'Egyptian Arabic') {
-      return 'arz';
-    }
-    if (langName === 'Catalan') {
-      return 'ca';
+    if (langName === 'Indonesian') {
+      return 'id';
     }
     var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
