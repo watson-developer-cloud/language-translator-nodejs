@@ -12,10 +12,8 @@
 </p>
 
   The IBM Watson&trade; [Language Translator][service_url] service provides an Application Programming Interface (API) that lets you identify the language of text, and then use a custom business domain to translate the text from one supported language to another.  
-  You can translate either by letting the service identify the source language or by selecting a source language and then by selecting a target language, and a business domain. Domain translation is linguistically targeted these business domains:
-  * *The News domain* - targeted at news articles and transcripts, it translates English to and from Arabic, Brazilian Portuguese, French, Italian, or Spanish. It also translates Spanish to and from French.
-  * *The Conversational domain* - targeted at conversational colloquialisms, it translates English to and from Arabic, Brazilian Portuguese, French, Italian, or Spanish.
-  * *The Patent domain* - targeted at technical and legal terminology, it translates Brazilian Portuguese, Chinese, or Spanish to English.
+  You can translate either by letting the service identify the source language or by selecting a source language and then by selecting a target language, and a business domain. In addition to text translation, you can use the API to translate full documents and preserve the file formatting!
+
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on IBM Cloud.
 
