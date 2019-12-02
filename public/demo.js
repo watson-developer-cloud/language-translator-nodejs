@@ -158,6 +158,19 @@ $(document).ready(function () {
   });
   // Lang Service - End here
 
+  // Set maximum form input length
+  var maxInputLength = 5000;
+  $(document).ready(function() {
+    $('#home textarea').attr('maxlength', maxInputLength);
+    $('#home .input-counter').html('0/' + maxInputLength);
+  });
+
+  // Update input character counter
+  $('#home textarea').on('input', function(){
+    var currentLength = $(this).val().length;
+    $('#home .input-counter').html(currentLength + '/' + maxInputLength);
+  });
+
   // Reset all the values on page
   $('#resetSpan').click(function (e) {
     e.preventDefault();
