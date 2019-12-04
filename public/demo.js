@@ -129,6 +129,15 @@ $(document).ready(function () {
     getTranslation();
   });
 
+  // Bidirectional toggle for source and target languages
+  $('#sourceTargetLangSwitch').on('click', function(e) {
+    e.preventDefault();
+    var sourceLang = $.trim($('#dropdownMenuInput').text());
+    var targetLang = $.trim($('#dropdownMenuOutput').text());
+    $('#dropdownMenuInput').html('').html(targetLang + '<span class="caret"></span>');
+    $('#dropdownMenuOutput').html('').html(sourceLang + '<span class="caret"></span>');
+  });
+
   // Lang Service - Start - This set send request for lang service to detect language
   // setup timer value for function
   var typingTimer; //timer identifier
