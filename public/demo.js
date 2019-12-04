@@ -159,7 +159,7 @@ $(document).ready(function () {
   // Lang Service - End here
 
   // Set maximum form input length
-  var maxInputLength = 5000;
+  var maxInputLength = 10000;
   $(document).ready(function() {
     $('#home textarea').attr('maxlength', maxInputLength);
     $('#home .input-counter').html('0/' + maxInputLength);
@@ -180,6 +180,7 @@ $(document).ready(function () {
     $('#home2 textarea').val('');
     $('#profile textarea').val('');
     $('#profile2 textarea').val('');
+    $('#home .input-counter').html('0/' + maxInputLength);
     sourceLangSelect = 'Choose Language';
   });
 
