@@ -129,6 +129,15 @@ $(document).ready(function () {
     getTranslation();
   });
 
+  // Bidirectional toggle for source and target languages
+  $('#sourceTargetLangSwitch').on('click', function(e) {
+    e.preventDefault();
+    var sourceLang = $.trim($('#dropdownMenuInput').text());
+    var targetLang = $.trim($('#dropdownMenuOutput').text());
+    $('#dropdownMenuInput').html('').html(targetLang + '<span class="caret"></span>');
+    $('#dropdownMenuOutput').html('').html(sourceLang + '<span class="caret"></span>');
+  });
+
   // Lang Service - Start - This set send request for lang service to detect language
   // setup timer value for function
   var typingTimer; //timer identifier
@@ -158,6 +167,19 @@ $(document).ready(function () {
   });
   // Lang Service - End here
 
+  // Set maximum form input length
+  var maxInputLength = 10000;
+  $(document).ready(function() {
+    $('#home textarea').attr('maxlength', maxInputLength);
+    $('#home .input-counter').html('0/' + maxInputLength);
+  });
+
+  // Update input character counter
+  $('#home textarea').on('input', function(){
+    var currentLength = $(this).val().length;
+    $('#home .input-counter').html(currentLength + '/' + maxInputLength);
+  });
+
   // Reset all the values on page
   $('#resetSpan').click(function (e) {
     e.preventDefault();
@@ -167,6 +189,7 @@ $(document).ready(function () {
     $('#home2 textarea').val('');
     $('#profile textarea').val('');
     $('#profile2 textarea').val('');
+    $('#home .input-counter').html('0/' + maxInputLength);
     sourceLangSelect = 'Choose Language';
   });
 
