@@ -196,8 +196,8 @@ $(document).ready(function () {
     $('#home2 textarea').val('');
     $('#profile textarea').val('');
     $('#profile2 textarea').val('');
-    $('#home .input-counter').html('0/' + maxInputLength);
     sourceLangSelect = 'Choose Language';
+    countCharacters();
   });
 
   /* -------------------------------- Functions start from here ---------------------------------------- */
@@ -207,9 +207,9 @@ $(document).ready(function () {
     $('#home .input-counter').html(currentLength + '/' + maxInputLength);
     // enable/disable notification to funnel users to paid acct
     if (currentLength >= maxInputLength) {
-      $('#home #character-limit-warning').html('You have reached the character limit (10k), sign up for more at www.ibm.com/insert-url-here');
+      $('#home #character-limit-warning').css("display", "flex");
     } else {
-      $('#home #character-limit-warning').html('');
+      $('#home #character-limit-warning').css("display", "none");
     }
   }
 

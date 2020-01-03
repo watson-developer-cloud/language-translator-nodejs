@@ -160,8 +160,23 @@
                   <div class="col-lg-12">
                     <div class="tab-content">
                       <div role="tabpanel" class="tab-pane active" id="home">
+                        <div id="character-limit-warning"
+                        style="pointer-events: none;
+                              display: none;
+                              justify-content: center;
+                              align-content: center;
+                              flex-direction: column;
+                              text-align: center;
+                              position: absolute;
+                              left: 1em;
+                              right: 1em;
+                              top: 0em;
+                              bottom: 0.25em;
+                              background-color: rgba(215, 65, 8, 0.25);">
+                        You have reached the character limit (10k), sign up for more at
+                        <a style="pointer-events: auto;" href="https://www.ibm.com/insert-url-here">www.ibm.com/insert-url-here</a></div>
                         <textarea></textarea>
-                        <span style="position: absolute; right: 1.5em; bottom: 0.5em;" class='input-counter'></span>
+                        <span style="position: absolute; right: 1.5em; bottom: 0.5em;" class="input-counter"></span>
                       </div>
                       <div role="tabpanel" class="tab-pane" id="profile">
                         <textarea disabled="disabled">Example of Rest API</textarea>
