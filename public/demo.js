@@ -134,8 +134,16 @@ $(document).ready(function () {
     e.preventDefault();
     var sourceLang = $.trim($('#dropdownMenuInput').text());
     var targetLang = $.trim($('#dropdownMenuOutput').text());
+    var targetText = $.trim($('#home2 textarea').val());
+    // switch source/target languages, use target text for source
     $('#dropdownMenuInput').html('').html(targetLang + '<span class="caret"></span>');
+    updateOutputDropdownMenu();
     $('#dropdownMenuOutput').html('').html(sourceLang + '<span class="caret"></span>');
+    
+    $('#home textarea').val(targetText);
+    // trigger re-translation/recount
+    doneTyping();
+    countCharacters();
   });
 
   // Lang Service - Start - This set send request for lang service to detect language
@@ -176,8 +184,7 @@ $(document).ready(function () {
 
   // Update input character counter
   $('#home textarea').on('input', function(){
-    var currentLength = $(this).val().length;
-    $('#home .input-counter').html(currentLength + '/' + maxInputLength);
+    countCharacters();
   });
 
   // Reset all the values on page
@@ -194,6 +201,17 @@ $(document).ready(function () {
   });
 
   /* -------------------------------- Functions start from here ---------------------------------------- */
+
+  function countCharacters() {
+    var currentLength = $('#home textarea').val().length;
+    $('#home .input-counter').html(currentLength + '/' + maxInputLength);
+    // enable/disable notification to funnel users to paid acct
+    if (currentLength >= maxInputLength) {
+      $('#home #character-limit-warning').html('You have reached the character limit (10k), sign up for more at www.ibm.com/insert-url-here');
+    } else {
+      $('#home #character-limit-warning').html('');
+    }
+  }
 
   // user is "finished typing," send for service request
   function doneTyping() {
