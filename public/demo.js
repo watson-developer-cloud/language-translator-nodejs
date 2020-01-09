@@ -207,9 +207,9 @@ $(document).ready(function () {
     $('#home .input-counter').html(currentLength + '/' + maxInputLength);
     // enable/disable notification to funnel users to paid acct
     if (currentLength >= maxInputLength) {
-      $('#home #character-limit-warning').css("display", "flex");
+      $('#home #character-limit-warning').css('display', 'flex');
     } else {
-      $('#home #character-limit-warning').css("display", "none");
+      $('#home #character-limit-warning').css('display', 'none');
     }
   }
 
