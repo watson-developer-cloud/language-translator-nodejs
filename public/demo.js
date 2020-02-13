@@ -84,7 +84,15 @@ $(document).ready(function () {
       //console.log(data + " response received");
       modelList = data.models;
 
-      // Get list of languages
+      for (var i=0; i<modelList.length; i++) {
+        if ("" + modelList[i].base_model_id) {
+          console.log("Model "+i+" is a custom model");
+          modelList[i].target += ":" + modelList[i].model_id;
+          console.log(modelList[i]);
+        }
+      }
+ 
+      // Get list of identifiable languages
       $.ajax({
         type: 'GET',
         url: '/api/identifiable_languages',
@@ -224,8 +232,8 @@ $(document).ready(function () {
           var dataLangName = getLanguageName(data);
           //console.log("detected language as " + dataLangName);
           $.each(sourceList, function (index, value) {
-            //console.log(value.source + ' source value ' +  getLanguageName(data));
-            if (value.source == dataLangName) {
+             //console.log(value.source + ' source value ' +  getLanguageName(data));
+             if (value.source == dataLangName) {
               langIdentified = true;
             }
           });
@@ -260,11 +268,18 @@ $(document).ready(function () {
   function getLanguageName(langAbbrev) {
     // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Indonesian
     // so it's hard-coded for now
+    console.log("Calling getLanguageName with "+langAbbrev);
     if (langAbbrev === 'id') {
       return 'Indonesian';
     }
     if (langAbbrev === 'zht') {
       return 'Traditional Chinese';
+    }
+    var splitStr = langAbbrev.split(':');
+    var customModelID = null;
+    if (splitStr.length > 1) {
+      customModelID = splitStr[1];
+      langAbbrev = splitStr[0];
     }
     var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
@@ -272,8 +287,14 @@ $(document).ready(function () {
       var langString = (langAbbrev.length == 2) ? test[i].language.substring(0, 2) : test[i].language;
       //console.log(langString + '   ggg   ' + langAbbrev);
       if (langString == langAbbrev) {
-        //console.log('   return   ' + test[i].name);
-        return test[i].name;
+        if (null === customModelID) {
+          console.log('return ' + test[i].name);
+          return test[i].name;
+        } else {
+          var longName =  test[i].name + ":" + customModelID;
+          console.log('return ' +longName);
+          return longName;          
+        }
       }
     }
     return langAbbrev;
@@ -281,16 +302,29 @@ $(document).ready(function () {
 
   // get abbreviation of language from Name
   function getLanguageCode(langName) {
+    console.log("calling getLanguageCode with "+langName);
     // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Indonesian
     // so it's hard-coded for now
     if (langName === 'Indonesian') {
       return 'id';
     }
+    var splitStr = langName.split(':')
+    var customModelID = null;
+    if (splitStr.length > 1) {
+      customModelID = splitStr[1];
+      langName = splitStr[0];
+    }
     var test = langAbbrevList;
     for (var i = 0; i < test.length; i++) {
       //console.log(test[i].name + '  dd   '+ langName);
       if (test[i].name == langName) {
-        return test[i].language;
+        if (null != customModelID) {
+          console.log("return ");
+          return test[i].language+":"+customModelID;
+        } else {
+          console.log("return ", test[i].language);
+          return test[i].language;
+        }
       }
     }
     return langName;
@@ -418,9 +452,17 @@ $(document).ready(function () {
     return locale.split('-').shift().toLowerCase();
   }
 
-  // Get model_id from domain, source , target
+  // Get  from domain, source , target
   function getModelId(pageDomain, source, target) {
     var modelId = '';
+    console.log('getModelId with ', pageDomain, source, targe)
+
+    // first check if the model ID is includedin the target
+    var targetParts = target.split(':');
+    if (targetParts.length>1) {
+      console.log("return", targetParts[1]);
+      return targetParts[1];
+    }
 
     // Preferred: search for an exact lang/locale match (e.g. en-US to es-LA)
     for (var y in modelList) {
@@ -428,6 +470,7 @@ $(document).ready(function () {
         var modelListDomain = modelList[y].domain.toString();
         if ((modelListDomain.toLowerCase() === pageDomain.toString().toLowerCase()) && source === modelList[y].source && target === modelList[y].target) {
           modelId = modelList[y].model_id;
+          console.log("return", modelId)
           return modelId;
         }
       }
