@@ -268,7 +268,7 @@ $(document).ready(function () {
   function getLanguageName(langAbbrev) {
     // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Indonesian
     // so it's hard-coded for now
-    console.log("Calling getLanguageName with "+langAbbrev);
+    //console.log("Calling getLanguageName with "+langAbbrev);
     if (langAbbrev === 'id') {
       return 'Indonesian';
     }
@@ -288,11 +288,11 @@ $(document).ready(function () {
       //console.log(langString + '   ggg   ' + langAbbrev);
       if (langString == langAbbrev) {
         if (null === customModelID) {
-          console.log('return ' + test[i].name);
+          //console.log('return ' + test[i].name);
           return test[i].name;
         } else {
           var longName =  test[i].name + ":" + customModelID;
-          console.log('return ' +longName);
+          //console.log('return ' +longName);
           return longName;          
         }
       }
@@ -302,7 +302,7 @@ $(document).ready(function () {
 
   // get abbreviation of language from Name
   function getLanguageCode(langName) {
-    console.log("calling getLanguageCode with "+langName);
+    //console.log("calling getLanguageCode with "+langName);
     // the /models endpoint doesn't include names, and the /identifiable_languages endpoint doesn't include Indonesian
     // so it's hard-coded for now
     if (langName === 'Indonesian') {
@@ -407,6 +407,8 @@ $(document).ready(function () {
 
     // get model_id from domain, source and target
     var model_id = getModelId(pageDomain, source, target);
+    console.log('getModelId with ', pageDomain, source, target, " returns ", model_id);
+
 
     if (pageDomain && source && target && textContent && model_id) {
       //console.log('source-' + source + '  target-' + target + '   textContent-' + textContent);
@@ -455,7 +457,6 @@ $(document).ready(function () {
   // Get  from domain, source , target
   function getModelId(pageDomain, source, target) {
     var modelId = '';
-    console.log('getModelId with ', pageDomain, source, targe)
 
     // first check if the model ID is includedin the target
     var targetParts = target.split(':');
