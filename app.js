@@ -24,6 +24,23 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 // Bootstrap application settings
 require('./config/express')(app);
 
+//console.log("Process env: ", process.env);
+if (process.env.VCAP_SERVICES) {
+  // console.log("VCAP_SERVICES env: ", process.env.VCAP_SERVICES);
+  var VCS = JSON.parse(process.env.VCAP_SERVICES);
+  console.log("VCS: ", VCS);
+  if (VCS.language_translator) {
+    // console.log("Credentials: ", VCS.language_translator[0].credentials);
+    process.env.LANGUAGE_TRANSLATOR_IAM_APIKEY = VCS.language_translator[0].credentials.apikey;
+    process.env.LANGUAGE_TRANSLATOR_URL = VCS.language_translator[0].credentials.url;
+  } else {
+    throw("No language translator defined in VCAP_SERVICES");
+  }
+}
+
+// console.log("ApiKey: ", process.env.LANGUAGE_TRANSLATOR_IAM_APIKEY);
+// console.log("URL: ", process.env.LANGUAGE_TRANSLATOR_URL);
+
 // Create the service wrapper
 const translator = new LanguageTranslatorV3({
   version: '2019-10-10',

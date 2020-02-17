@@ -1,5 +1,12 @@
+---
+declared-services:
+  Language-MT:
+    label: language_translation
+    plan: standard
 applications:
-  name: language-translator-demo
+- name: language-translator-nodejs
   command: npm start
   path: .
   memory: 256M
+  services:
+  - Language-MT
