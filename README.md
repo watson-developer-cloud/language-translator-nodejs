@@ -81,12 +81,13 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 1. Create an instance of the Language Translator service to use.
 
-  ```
-  $ cf create-service language_translator advanced Language-MT
-  ```
+   ```
+   $ cf create-service language_translator advanced Language-MT
+   ```
 
 1. Edit the *manifest.yml* file. Change the **name** field to something unique.  
   For example, `- name: my-app-name`.
+
 1. Deploy the application
 
     ```
