@@ -2,7 +2,7 @@
 declared-services:
   Language-MT:
     label: language_translation
-    plan: standard
+    plan: advanced
 applications:
 - name: language-translator-nodejs
   command: npm start
