@@ -4,7 +4,7 @@ declared-services:
     label: language_translation
     plan: advanced
 applications:
-- name: language-translator-nodejs
+- name: language-translator-demo
   command: npm start
   path: .
   memory: 256M
