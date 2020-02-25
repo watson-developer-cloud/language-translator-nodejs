@@ -232,8 +232,8 @@ $(document).ready(function () {
           var dataLangName = getLanguageName(data);
           //console.log("detected language as " + dataLangName);
           $.each(sourceList, function (index, value) {
-             //console.log(value.source + ' source value ' +  getLanguageName(data));
-             if (value.source == dataLangName) {
+            //console.log(value.source + ' source value ' +  getLanguageName(data));
+            if (value.source == dataLangName) {
               langIdentified = true;
             }
           });
