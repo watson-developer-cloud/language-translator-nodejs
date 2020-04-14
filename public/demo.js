@@ -134,8 +134,16 @@ $(document).ready(function () {
     e.preventDefault();
     var sourceLang = $.trim($('#dropdownMenuInput').text());
     var targetLang = $.trim($('#dropdownMenuOutput').text());
+    var targetText = $.trim($('#home2 textarea').val());
+    // switch source/target languages, use target text for source
     $('#dropdownMenuInput').html('').html(targetLang + '<span class="caret"></span>');
+    updateOutputDropdownMenu();
     $('#dropdownMenuOutput').html('').html(sourceLang + '<span class="caret"></span>');
+    
+    $('#home textarea').val(targetText);
+    // trigger re-translation/recount
+    doneTyping();
+    countCharacters();
   });
 
   // Lang Service - Start - This set send request for lang service to detect language
@@ -176,8 +184,7 @@ $(document).ready(function () {
 
   // Update input character counter
   $('#home textarea').on('input', function(){
-    var currentLength = $(this).val().length;
-    $('#home .input-counter').html(currentLength + '/' + maxInputLength);
+    countCharacters();
   });
 
   // Reset all the values on page
@@ -189,11 +196,22 @@ $(document).ready(function () {
     $('#home2 textarea').val('');
     $('#profile textarea').val('');
     $('#profile2 textarea').val('');
-    $('#home .input-counter').html('0/' + maxInputLength);
     sourceLangSelect = 'Choose Language';
+    countCharacters();
   });
 
   /* -------------------------------- Functions start from here ---------------------------------------- */
+
+  function countCharacters() {
+    var currentLength = $('#home textarea').val().length;
+    $('#home .input-counter').html(currentLength + '/' + maxInputLength);
+    // enable/disable notification to funnel users to paid acct
+    if (currentLength >= maxInputLength) {
+      $('#home #character-limit-warning').css('display', 'flex');
+    } else {
+      $('#home #character-limit-warning').css('display', 'none');
+    }
+  }
 
   // user is "finished typing," send for service request
   function doneTyping() {
