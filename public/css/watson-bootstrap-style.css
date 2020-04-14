@@ -5734,7 +5734,11 @@ table.table,
   left: 8px;
 }
 
-
+div.resources a {
+  white-space: nowrap;
+  display: inline-block;
+  font-size: 1.4rem;
+}
 .base--button_fill {
   background-color: #315d80;
   border-color: #315d80;
