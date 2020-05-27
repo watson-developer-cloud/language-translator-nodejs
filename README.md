@@ -106,4 +106,4 @@ Find more open source projects on the
 [IBM Github Page](http://ibm.github.io/).
 
 [service_url]: https://www.ibm.com/watson/services/language-translator/
-[docs]: https://cloud.ibm.com/docs/services/language-translator?topic=language-translator-about#about
+[docs]: https://cloud.ibm.com/docs/language-translator?topic=language-translator-about#about
