@@ -1,4 +1,9 @@
+<h1 align="center" style="border-bottom: none;">*** DEPRECATED ***</h1>
 <h1 align="center" style="border-bottom: none;">🚀 Language Translator Sample Application</h1>
+<h1 align="center" style="border-bottom: none;">*** DEPRECATED ***</h1>
+<h3 align="center">There is a new demo available for
+  <a href="https://www.ibm.com/demos/live/watson-language-translator">Language Translator service</a>
+</h3>
 <h3 align="center">This Node.js app demonstrates some of the Language Translator service features.
 </h3>
 <p align="center">
